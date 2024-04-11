@@ -212,6 +212,9 @@ Django
 
 ```pip3 install 'django<4'```
 
+Django-rest framework
+```pip install djangorestframework```
+
 dj database url and psycopg2
 
 ```pip3 install dj_database_url psycopg2```
