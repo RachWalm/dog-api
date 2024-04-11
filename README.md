@@ -1,36 +1,40 @@
-# Pawsitive Haven
+# Dog API
 
 ## Introduction
 
-Welcome to [Pawsitive Haven]().
-
-It can be accessed through [Pawsitive Haven]().
+Welcome to [Dog API]().
 
 ![title]()
 
-The Pawsitive Haven site is designed to fill a gap in dog rescue/adoption area. It is essential that once the dogs have gone into a rescue they are visible to the public to encourage adoption.
+It can be accessed through [Dog API]().
 
-As these are often run by charities and volunteers using IT solutions to advertise and retain information on the dogs is often underutilised.
+The Dog API is designed to allow data to be created/read/updated and deleted regarding a dog rescue/adoption service. It is essential that once the dogs have gone into a rescue their information is accurately and sustainably retained, and the API allows this information to be accessed and manipulated as an interface between a front end website and a database retaining the information.
 
-To step up the advertising campaign to get dogs adopted rather than just one picture and a list of characteristics with a paragraph about them, this site endeavours to show their personalities by getting the public involved in their timelines/posts/comments from walkers and the public. Hopefully, they will then get attached to a dog and adopt them.
+As these rescues are often run by charities and volunteers, using IT solutions to advertise and retain information on the dogs is often underutilised, the people using it often have a low level of technical knowledge. This means that they would definitely not be able to access the data straight from the data base and need a connection to a user-friendly website. Also as the intent of the overall project is two-fold, 
+1) to get the animals advertised to potential adopters
+2) retain information on the dogs for use in the rescue regarding their history and needs. 
 
-The system will mean that the relevant information that the rescue requires day to day about the dog can be held in a profile, of which some parts are made public and the dog will also get a timeline, where walkers/volunteers/people involved with the dog can post pictures and stories to make the dog more appealing.
+This means that it is essential that the information in the database is can be accessed and manipulated easily to achieve these goals, by all relevant parties with ease.
 
-Once they are adopted the new owners can continue to post information about the dog and that way stay in contact with people who have looked after them in the rescue. Also this will give a feel good area for people thinking about adopting to see how it changes the lives of dogs.
+Most websites that are for rescues just have a photo a couple of details and a paragraph of information to give an adopter information on the dogs. To step up the advertising campaign to get dogs adopted, rather than being limited to these features, this site endeavours to show their personalities by getting the public involved in their timelines/posts/comments from walkers and the public. This means that as well as a simple profile for the dog, there is a requirement to store posts, comments etc from users.
 
+The system will mean that the relevant information that the rescue requires day to day about the dog can be held in a profile, of which some parts are made public and the dog will also get a timeline, where walkers/volunteers/people involved with the dog can post pictures and stories to make the dog more appealing. 
 
 ## UX design
 
-To achieve this there needs to be first, a backend API dealing with all the profiles, data and posts. Secondly, a Front-End site that deals with all the interactions required by 1) The Rescue staff, 2)Volunteers and Walkers, 3)Potential adopters and 4)Final owners experience of the data.
+The user of the API is intended to be a web based site that provides the information all required information in a way that can be easily used to produce an efficient website. 
+
+The data will be privately owned by the dog rescue and as such will need to be restricted to those with appropriate approvals, some read-only data will be available to the public, but to perform activities on the data will require relevant registration/login/authorisation.
+
+All of this data needs to be manipulated by the API in a way that is logical and can be interpreted to produce the features on a website with ease by the website developer.
 
 
-### Wireframes – FrontEnd
-
-
-### Relationship diagram - BackEnd
+### Relationship diagram
 
 
 #### Initial idea diagram
+
+The initial relationship diagram that was brainstormed with my mentor contained
 
 ![relationship diagram]()
 
