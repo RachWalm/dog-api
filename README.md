@@ -42,7 +42,7 @@ There were several things that needed to be altered with the idea. So the diagra
 
 ![discussed diagram](/document/discussion-ERD.png)
 
-1. It was decided to drop the custom_user and use a user and user_profile. This would make it similar to recent experience. The avatar was unnecessary as the site is about the dogs not the people (this could always be added to the user_profile as a future improvement). The type of account - which was going to be admin, staff, adopted owner or user will only be necessary if the adopted owner functionality was going to be implemented.
+1. It was decided to drop the custom_user and use a user and user_profile. This would make it similar to recent experience. The avatar was unnecessary as the site is about the dogs not the people (this could always be added to the user_profile as a future improvement). The type of account - which was going to be admin, staff, adopted owner or user will only be necessary if the adopted owner functionality was going to be implemented. The admin site can be used to manually set superusers, staff etc options.
 
 2. It was noticed that there was a queries page in the wireframes for the front end but no where to store the information that would be put into that form to make a query about the dogs which was essential functionality.
 
@@ -50,7 +50,7 @@ There were several things that needed to be altered with the idea. So the diagra
 
 Therefore, the priorities were going to be that it was essential to do user_profile, dog_profile, posts, comments and request_form (user would be set up as part of registration functionality and not by part of this development).
 
-Time dependent would be the favourite and then emoji. With looking at allowing an adopter to post on their dogs timeline as a final functionality that would probably have to be a future development.
+Time dependent would be then favourite and then emoji. With looking at allowing an adopter to post on their dogs timeline as a final functionality that would probably have to be a future development.
 
 #### Final implemented diagram
 
@@ -70,38 +70,6 @@ Time dependent would be the favourite and then emoji. With looking at allowing a
 ## Features
 
 ### Existing Features
-
-
-#### Forms on pages
-
-All forms undergo csrf tokens to avoid any fraudulent behaviour. 
-
-
-![deletemodal](document/deletemodal.png)
-
-Deleting a charity does not delete any of the coordinators that are stated in the many to many relationship as this is not a ON_CASCADE relationship and the data of who is associated is stored against the charity. Therefore, on look up from the coordinators end for the see profile of coordinators it just won't be there any more.
-
-#### Defensive programming
-
-
-#### Flash messages
-
-Most activities that involve change contain a flash message. If the user performs an allauth related activity (login/logout etc.) or if the user updates the database in some way a flash message should appear on the screen for 2.5 seconds. Other activities such as searches are apparent by the messages on the screen or results being displayed.
-
-#### Search text function
-
-This was adapted for the various searches throughout the site that are text inputs from a tutorial on youtube [youtube](https://www.youtube.com/watch?v=AGtae4L5BbI).
-
-```HTML
-        <form method=POST action="{% url 'search_charity' %}">
-            {% csrf_token %}
-            <input type="search" placeholder="charity name" aria-label="Charity name search" name="search">
-            <button class="btn btn-outline-info" type="submit">Search Charity</button>
-        </form>
-```
-```python
-search = request.POST['search']
-```
 
 
 ### Potential Future Feature Developments 
@@ -300,21 +268,6 @@ python3 manage.py runserver
 See [Testing](TESTING.md)
 
 ## Credits
-
-### Images
-
-
-Dog with roof and chimney on head
-Image by <a href="https://pixabay.com/users/rfind-9166353/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=5173629">Ryan F</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=5173629">Pixabay</a>
-
-Paw for buttons
-Image by <a href="https://pixabay.com/users/blue-hat-graphics-24232276/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7284056">Dimuth Amarasiri</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7284056">Pixabay</a>
-
-
-Background pawprints
-Image by <a href="https://pixabay.com/users/natiqjavid-1602367/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6757808">Muhammad Natiq</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6757808">Pixabay</a>
-
-Brown background pawprints from Canava
 
 ## Acknowledgements
 
