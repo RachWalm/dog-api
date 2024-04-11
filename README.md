@@ -11,8 +11,8 @@ It can be accessed through [Dog API]().
 The Dog API is designed to allow data to be created/read/updated and deleted regarding a dog rescue/adoption service. It is essential that once the dogs have gone into a rescue their information is accurately and sustainably retained, and the API allows this information to be accessed and manipulated as an interface between a front end website and a database retaining the information.
 
 As these rescues are often run by charities and volunteers, using IT solutions to advertise and retain information on the dogs is often underutilised, the people using it often have a low level of technical knowledge. This means that they would definitely not be able to access the data straight from the data base and need a connection to a user-friendly website. Also as the intent of the overall project is two-fold, 
-1) to get the animals advertised to potential adopters
-2) retain information on the dogs for use in the rescue regarding their history and needs. 
+1. to get the animals advertised to potential adopters
+2. retain information on the dogs for use in the rescue regarding their history and needs. 
 
 This means that it is essential that the information in the database is can be accessed and manipulated easily to achieve these goals, by all relevant parties with ease.
 
@@ -34,10 +34,23 @@ All of this data needs to be manipulated by the API in a way that is logical and
 
 #### Initial idea diagram
 
-The initial relationship diagram that was brainstormed with my mentor contained
+The initial relationship diagram that was presented to my mentor:
 
-![relationship diagram]()
+![relationship diagram](/document/initial-ERD.png)
 
+There were several things that needed to be altered with the idea. So the diagram got more complicated but the priority got simplified.
+
+![discussed diagram](/document/discussion-ERD.png)
+
+1. It was decided to drop the custom_user and use a user and user_profile. This would make it similar to recent experience. The avatar was unnecessary as the site is about the dogs not the people (this could always be added to the user_profile as a future improvement). The type of account - which was going to be admin, staff, adopted owner or user will only be necessary if the adopted owner functionality was going to be implemented.
+
+2. It was noticed that there was a queries page in the wireframes for the front end but no where to store the information that would be put into that form to make a query about the dogs which was essential functionality.
+
+3. As allowing the adopted owners to post in the success stories was decided to be a low priority feature adopter_profile was decided to be removed from the dog_profile table in future.
+
+Therefore, the priorities were going to be that it was essential to do user_profile, dog_profile, posts, comments and request_form (user would be set up as part of registration functionality and not by part of this development).
+
+Time dependent would be the favourite and then emoji. With looking at allowing an adopter to post on their dogs timeline as a final functionality that would probably have to be a future development.
 
 #### Final implemented diagram
 
@@ -93,6 +106,7 @@ search = request.POST['search']
 
 ### Potential Future Feature Developments 
 
+1. Adoption process monitoring, documents approved, home approved, dog ready to go,
 
 ## Bugs
 
