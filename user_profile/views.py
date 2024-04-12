@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import UserProfile
 from .serializers import UserProfileSerializer
+from dog_api.permissions import IsOwnerOrReadOnly
 
 class UserProfileList(APIView):
     def get(self, request):
@@ -13,9 +14,11 @@ class UserProfileList(APIView):
     
 class UserProfileDetail(APIView):
     serializer_class = UserProfileSerializer
+    permission_classes = [IsOwnerOrReadOnly]
     def get_object(self, pk):
         try:
             user_profile = UserProfile.objects.get(pk=pk)
+            self.check_object_permissions(self.request, user_profile)
             return user_profile
         except UserProfile.DoesNotExist:
             raise Http404
