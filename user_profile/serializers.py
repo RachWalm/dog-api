@@ -2,8 +2,9 @@ from rest_framework import serializers
 from .models import UserProfile
 
 class UserProfileSerializer(serializers.ModelSerializer):
+    """Serializer for user profile includes authentication on is_owner to check if logged in"""
     user_id = serializers.ReadOnlyField(source='user_id.username')
-    is_owner = serializers.SerializerMethodField()
+    is_owner = serializers.SerializerMethodField() 
     
     def get_is_owner(self, obj):
         request = self.context['request']

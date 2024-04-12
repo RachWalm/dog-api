@@ -7,6 +7,10 @@ from .serializers import UserProfileSerializer
 from dog_api.permissions import IsOwnerOrReadOnly
 
 class UserProfileList(APIView):
+    """
+    View to provide a list of all user profiles stored in the database
+    and the relevant details from the user profile
+    """
     def get(self, request):
         user_profiles = UserProfile.objects.all()
         serializer = UserProfileSerializer(
@@ -15,6 +19,13 @@ class UserProfileList(APIView):
         return Response(serializer.data)
     
 class UserProfileDetail(APIView):
+    """
+    View to provide a single instance of a user profile from the
+    database and the relevant details from that user profile.
+    Checks that the specified user profile is available in the
+    database or does not exist raising an error.
+    get views user profile and put updates user profile
+    """
     serializer_class = UserProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
     def get_object(self, pk):
