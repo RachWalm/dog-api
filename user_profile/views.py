@@ -23,7 +23,7 @@ class UserProfileDetail(APIView):
     View to provide a single instance of a user profile from the
     database and the relevant details from that user profile.
     Checks that the specified user profile is available in the
-    database or does not exist raising an error.
+    database or if does not exist raising an error.
     get views user profile and put updates user profile
     """
     serializer_class = UserProfileSerializer

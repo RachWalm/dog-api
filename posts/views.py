@@ -8,6 +8,10 @@ from dog_api.permissions import IsOwnerOrReadOnly
 
 
 class PostList(APIView):
+    """
+    View to provide a list of all posts stored in the database
+    and the relevant details from the posts
+    """
     serializer_class = PostSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
@@ -35,9 +39,18 @@ class PostList(APIView):
 
 
 class PostDetail(APIView):
+    """
+    View to provide a single instance of a post from the
+    database and the relevant details from that post.
+    Checks that the specified post id is available in the
+    database or if does not exist raising an error.
+    get - views post and put - updates post and delete -
+    deletes the post specified
+    """
+    
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = PostSerializer
-
+    
     def get_object(self, pk):
         try:
             post = Post.objects.get(pk=pk)

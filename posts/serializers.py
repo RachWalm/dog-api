@@ -2,7 +2,10 @@ from rest_framework import serializers
 from .models import Post
 
 class PostSerializer(serializers.ModelSerializer):
-    """Serializer for post includes authentication on is_owner to check if logged in"""
+    """
+    Serializer for post includes authentication on is_owner to check if logged in
+    and has postee's first name available
+    """
     user_id = serializers.ReadOnlyField(source='user_id.username')
     is_owner = serializers.SerializerMethodField()
     users_first_name = serializers.ReadOnlyField(source='user_id.userprofile.first_name')

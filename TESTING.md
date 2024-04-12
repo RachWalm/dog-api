@@ -4,7 +4,7 @@
 
 ##
 
-### Profile app [#43](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=59544320)
+### user_profile app [#43](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=59544320)
 
 As a user I can create a user profile
 
@@ -17,6 +17,24 @@ As a user I get an error if I put in an invalid user profile ID
 As a user I can edit a user profile that I own
 
 As a user I can't edit a profile I don't own, but can view it
+
+###  posts app
+
+As a user I can create a post
+
+As a user I can read a list of posts
+
+As a user I can read a specific post
+
+As a user I get an error if I put in an invalid post ID
+
+As a user I can edit a post that I own
+
+As a user I can't edit a post I don't own, but can view it
+
+As a user I can delete a post that I own
+
+As a user I can't delete a post that I don't own
 
 ### Superuser
 
