@@ -79,6 +79,8 @@ Time dependent would be then favourite and then emoji. With looking at allowing 
 
 ## Bugs
 
+1. every update on a post was a new post. but it wasn't it was just that the form was retaining the old information so it looked like you were updating but the action said POST not put and it only showed the post you had just created but was actually the page url was posts not post/id so it was confusing.
+
 
 ## Technologies
 
