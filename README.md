@@ -8,29 +8,29 @@ Welcome to [Dog API]().
 
 It can be accessed through [Dog API]().
 
-The Dog API is designed to allow data to be created/read/updated and deleted regarding a dog rescue/adoption service. It is essential that once the dogs have gone into a rescue their information is accurately and sustainably retained, and the API allows this information to be accessed and manipulated as an interface between a front end website and a database retaining the information.
+The Dog API is designed to allow data to be created/read/updated and deleted regarding a dog rescue/adoption service. It is essential that once the dogs have gone into a rescue their information is accurately and sustainably retained, and the API allows this information to be created, accessed and manipulated as an interface between a front end website and a database retaining the information.
 
-As these rescues are often run by charities and volunteers, using IT solutions to advertise and retain information on the dogs is often underutilised, the people using it often have a low level of technical knowledge. This means that they would definitely not be able to access the data straight from the data base and need a connection to a user-friendly website. Also as the intent of the overall project is two-fold, 
-1. to get the animals advertised to potential adopters
+As these rescues are often run by charities and volunteers, using IT solutions to gain exposure to the public and retain information on the dogs is often under-utilised, the people using it often have a low level of technical knowledge. This means that they would definitely not be able to access the data straight from the data base and need a connection to a user-friendly website. Also as the intent of the overall project is two-fold, 
+1. to get the animals known to potential adopters
 2. retain information on the dogs for use in the rescue regarding their history and needs. 
 
 This means that it is essential that the information in the database is can be accessed and manipulated easily to achieve these goals, by all relevant parties with ease.
 
-Most websites that are for rescues just have a photo a couple of details and a paragraph of information to give an adopter information on the dogs. To step up the advertising campaign to get dogs adopted, rather than being limited to these features, this site endeavours to show their personalities by getting the public involved in their timelines/posts/comments from walkers and the public. This means that as well as a simple profile for the dog, there is a requirement to store posts, comments etc from users.
+Most websites that are for rescues just have a photo a couple of details and a paragraph of information to give an adopter information on the dogs. To step up the advertising campaign to get dogs adopted, rather than being limited to these features, this site endeavours to show their personalities by getting the public involved in their timelines with posts/comments from walkers and the public. This means that as well as a profile for the dog, there is a requirement to store posts, comments etc from users as well as data regarding queries.
 
 The system will mean that the relevant information that the rescue requires day to day about the dog can be held in a profile, of which some parts are made public and the dog will also get a timeline, where walkers/volunteers/people involved with the dog can post pictures and stories to make the dog more appealing. 
 
 ## UX design
 
-The user of the API is intended to be a web based site that provides the information all required information in a way that can be easily used to produce an efficient website. 
+The user of the API is intended to be a web based site that provides all required information in a way that can be easily used to produce an efficient website. The website can then be used by rescue admin, walkers, supporters and adopters.
 
 The data will be privately owned by the dog rescue and as such will need to be restricted to those with appropriate approvals, some read-only data will be available to the public, but to perform activities on the data will require relevant registration/login/authorisation.
 
 All of this data needs to be manipulated by the API in a way that is logical and can be interpreted to produce the features on a website with ease by the website developer.
 
+Most of the posts app and comments app will be very similar to the walkthrough provided by Code Institute as part of this course of study [git hub for walkthrough](https://github.com/Code-Institute-Solutions/drf-api/tree/ed54af9450e64d71bc4ecf16af0c35d00829a106). I therefore credit those apps as being substantially based on the code institute course work. There are some slight changes. The user profile does not feature an image of the person as part of the user profile and the identification of the person posting or commenting on the posts is their first name not their username - so it has been adapted to allow for these changes. As the code provided does more or less exactly as required it is wasteful to redo coding that is already available and effective.
 
 ### Relationship diagram
-
 
 #### Initial idea diagram
 
@@ -75,6 +75,7 @@ Time dependent would be then favourite and then emoji. With looking at allowing 
 ### Potential Future Feature Developments 
 
 1. Adoption process monitoring, documents approved, home approved, dog ready to go,
+2. Adopted owner posting on the timeline
 
 ## Bugs
 
@@ -83,14 +84,10 @@ Time dependent would be then favourite and then emoji. With looking at allowing 
 
 ### Languages used
 
-- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) was used for the coding of the site.
-- [CSS](https://developer.mozilla.org/en-US/docs/Web/css) was included for styles and layout of the site.
 - [python 3.11.5](https://docs.python.org/3/) for functionality.
-- [JS](https://developer.mozilla.org/en-US/docs/Web/javascript) to incorporate the modal and validate the time and phone number.
+
 ### Frameworks and libraries
 - [Django](https://www.djangoproject.com/) Framework based on python.
-- [Boostrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/) for styling the site.
-
 
 ### Databases
 
@@ -113,17 +110,7 @@ Time dependent would be then favourite and then emoji. With looking at allowing 
 
 ### Web resources
 
-- [Chrome-DevTools](https://developer.chrome.com/docs/devtools/) were extremely useful for trying out different code without affecting my core code and particularly when working on responsiveness.
-- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) was used to check for performance and accessibility.
-- [HTML-markdown-validator](https://validator.w3.org/) was used to validate the HTML.
-- [CSS-validator](https://jigsaw.w3.org/css-validator/) was used to perform the CSS validation.
 - [PEP8Online.com](https://pep8ci.herokuapp.com/) was used to validate python coding
-- [Jshint](https://jshint.com/) was used to validate the JS.
-- [favicon](https://favicon.io/favicon-converter/) to generate my favicon from my logo.
-- [Responsive viewer extension](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb) to produce the responsive view for my testing.
-- [image compressor](https://compressnow.com/) to reduce the size of the images.
-- [Canava](https://www.canva.com/en_gb/) used to generate logo
-
 
 ## Deployment
 
@@ -280,11 +267,11 @@ My family - Pat Walmsley and Sarah Walmsley have tested the site on their own de
 
 My Partner - Ian Harris has been extremely supportive while I have been working on this project.
 
-Code institute - For all the information and course content that has contributed to the creation of this project. 
+Code institute - For all the information and course content that has contributed to the creation of this project. Especially the Posts and Comments apps that were modified for this project.
 
 Code institute tutors - Who worked very hard and often were very motivational and increased my faith in myself.
 
 W3 website for many clarifications of syntax.
 
-Django documentation and bootstrap documentation from which I learned a great deal.
+Django documentation from which I learned a great deal.
 

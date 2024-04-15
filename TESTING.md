@@ -2,7 +2,9 @@
 
 ## Validation
 
-##
+### PEP8 linter
+
+- [PEP8Online.com](https://pep8ci.herokuapp.com/) was used to validate python coding
 
 ### user_profile app [#43](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=59544320)
 
