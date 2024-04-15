@@ -20,7 +20,7 @@ As a user I can edit a user profile that I own
 
 As a user I can't edit a profile I don't own, but can view it
 
-###  posts app
+###  posts app [#45](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=59589351)
 
 As a user I can create a post
 
@@ -38,7 +38,26 @@ As a user I can delete a post that I own
 
 As a user I can't delete a post that I don't own
 
-### Superuser
+###  comments app [#48](https://github.com/users/RachWalm/projects/4?pane=issue&itemId=59786064)
+
+As a user I can create a comment attached to a post
+
+As a user I can read a list of comments
+
+As a user I can read a specific comment
+
+As a user I get an error if I put in an invalid comment ID
+
+As a user I can edit a comment I made
+
+As a user I can't edit a comment I don't own, but can view it
+
+As a user I can delete a comment that I own
+
+As a user I can't delete a comment that I don't own
+
+
+### Superuser [#46](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=59743374)
 
 As a super user I can log into the admin panel
 
