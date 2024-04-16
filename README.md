@@ -30,6 +30,8 @@ All of this data needs to be manipulated by the API in a way that is logical and
 
 Most of the posts app and comments app will be very similar to the walkthrough provided by Code Institute as part of this course of study [git hub for walkthrough](https://github.com/Code-Institute-Solutions/drf-api/tree/ed54af9450e64d71bc4ecf16af0c35d00829a106). I therefore credit those apps as being substantially based on the code institute course work. There are some slight changes. The user profile does not feature an image of the person as part of the user profile and the identification of the person posting or commenting on the posts is their first name not their username - so it has been adapted to allow for these changes. As the code provided does more or less exactly as required it is wasteful to redo coding that is already available and effective.
 
+The favourite relationship was derived from the following app in the walkthrough.
+
 ### Relationship diagram
 
 #### Initial idea diagram
