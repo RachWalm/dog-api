@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from dog_profile.models import DogProfile
 
 
 class Post(models.Model):
@@ -10,6 +11,7 @@ class Post(models.Model):
     maybe story without an image or just an image. Title is required.
     """
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    dog_id = models.ForeignKey(DogProfile, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=255)
