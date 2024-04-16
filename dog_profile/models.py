@@ -1,5 +1,30 @@
 from django.db import models
 
+class GenderChoices(models.Model):
+    '''List of the gender choices model'''
+    GENDER_CHOICES = (
+        (0, 'TBC'),
+        (1, 'Male'),
+        (2, 'Female'),
+    )
+    
+class SizeChoices(models.Model):
+    '''List of the size choices model'''
+    SIZE_CHOICES = (
+        (0, 'TBC'),
+        (1, 'Small'),
+        (2, 'Large'),
+    )
+    
+class StatusChoices(models.Model):
+    '''List of the size choices model'''
+    STATUS_CHOICES = (
+        (0, 'To arrive'),
+        (1, 'Not available'),
+        (2, 'Available'),
+        (3, 'Rehomed')
+    )
+
 class DogProfile(models.Model):
     """
     DogProfile model is to store the details of the dogs that are in/have been
@@ -15,14 +40,14 @@ class DogProfile(models.Model):
     returned_date = models.DateTimeField(blank=True)
     dog_age = models.IntegerField(blank=True)
     dog_breed = models.CharField(max_length=255)
-    dog_gender = models.CharField(max_length=255)
-    dog_size = models.CharField(max_length=255)
+    dog_gender = models.IntegerField(choices=GenderChoices.GENDER_CHOICES, default=0)
+    dog_size = models.IntegerField(choices=SizeChoices.SIZE_CHOICES, default=0)
     dog_image = models.ImageField(
         upload_to='images/',
         # default='../default_profile_qdjgyp'
     )
     at_rescue = models.BooleanField(default=True)
-    status = models.CharField(max_length=255)
+    status = models.IntegerField(choices=StatusChoices.STATUS_CHOICES, default=0)
     general = models.TextField()
     vaccine_canine_parvovirus = models.DateTimeField(blank=True)
     vaccine_canine_hepatitis = models.DateTimeField(blank=True)
@@ -38,10 +63,6 @@ class DogProfile(models.Model):
     home_dogs = models.BooleanField(default=False)
     home_animals = models.BooleanField(default=False)
     home_children = models.BooleanField(default=False)
-    
-    
-    
-    
     
     class Meta:
         ordering = ['-created_at']
