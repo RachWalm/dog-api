@@ -8,8 +8,8 @@ class Favourite(models.Model):
     want included in their favourite list so that they can go straight to dogs
     they like instead of searching for them
     """
-    user_id = models.OneToOneField(User, related_name='person', on_delete=models.CASCADE)
-    dog_id = models.OneToOneField(DogProfile, related_name='favourited', on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, related_name='person', on_delete=models.CASCADE)
+    dog_id = models.ForeignKey(DogProfile, related_name='favourited', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
