@@ -56,6 +56,22 @@ As a user I can delete a comment that I own
 
 As a user I can't delete a comment that I don't own
 
+###  favourite app [#50](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=60073597)
+
+As a user I can create a favourite link to a dog
+
+As a user I can read a list of favourite connections
+
+As a user I can look at a specific favourite connection
+
+As a user I get an error if I put in an invalid favourite ID
+
+As a user I can remove a favourite connection that I own
+
+As a user I can't delete a favourite connection that I don't own
+
+As a database I can't store duplicate connections so that if something is deleted there isn't an old copy
+
 
 ### Superuser [#46](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=59743374)
 
