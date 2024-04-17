@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from dog_profile.models import DogProfile
+from user_profile.models import UserProfile
 
 class RequestAdopt(models.Model):
     """
@@ -24,3 +25,5 @@ class RequestAdopt(models.Model):
         
         def __str__(self):
             return f"{self.user_id} interest in {self.dog_id}"
+        
+        

@@ -17,8 +17,8 @@ class RequestAdoptList(generics.ListCreateAPIView):
     #     'post'
     # ]
     
-    def perform_create(self, serializer):
-        serializer.save(user_id=self.request.user)
+    # def perform_create(self, serializer):
+    #     serializer.save(user_id=self.request.user)
         
 
 class RequestAdoptDetail(generics.RetrieveUpdateDestroyAPIView):

@@ -72,6 +72,27 @@ As a user I can't delete a favourite connection that I don't own
 
 As a database I can't store duplicate connections so that if something is deleted there isn't an old copy
 
+###  request_adopt app [#]()
+
+As a user I can fill out the form and create a request to adopt a dog
+
+As a user it automatically selects the logged in user so that it can't be filled out with another users name
+
+As a user it won't let me fill out the form if I am not logged in so the user is attached to the form
+
+As a user I can edit my own requests so that I can make adjustments to the information in the adoption request
+
+As a user I can only edit my own requests so that I can't adjust someone elses data
+
+As a user I can delete my adoption request so that I can change my mind
+
+As a user I cannot delete someone elses users request so that I can't remove their data
+
+As a user I can see just one adoption request so I can focus on one request
+
+As a user I can see a list of adoption requests so that I can see all the requests at once
+
+As a user I get an error if I put in an id that doesn't exist for an adoption request
 
 ### Superuser [#46](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=59743374)
 
