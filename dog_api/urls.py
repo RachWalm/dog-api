@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('comments.urls')),
     path('', include('dog_profile.urls')),
     path('', include('favourite.urls')),
+    path('', include('request_adopt.urls')),
 ]

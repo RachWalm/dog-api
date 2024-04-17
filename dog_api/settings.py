@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'comments',
     'dog_profile',
     'favourite',
+    'request_adopt',
 ]
 
 MIDDLEWARE = [
