@@ -72,7 +72,7 @@ As a user I can't delete a favourite connection that I don't own
 
 As a database I can't store duplicate connections so that if something is deleted there isn't an old copy
 
-###  request_adopt app [#]()
+###  request_adopt app [#51](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=60229234)
 
 As a user I can fill out the form and create a request to adopt a dog
 
