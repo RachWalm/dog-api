@@ -1,8 +1,9 @@
 from django.db import models
+from dog_profile.models import DogProfile
 
 class DogVaccine(models.Model):
     """
-    DogVaccineProfile model is to store the details of the dogs that are in/have been
+    DogVaccine model is to store the details of the dogs that are in/have been
     in the rescue and their vaccination status.
     The model holds confidential information for the 
     rescue day to day running to care for the dog.
