@@ -6,7 +6,11 @@
 
 - [PEP8Online.com](https://pep8ci.herokuapp.com/) was used to validate python coding
 
+## User stories
+
 ### user_profile app [#43](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=59544320)
+
+As a user my profile is created when I sign up for an account
 
 As a user I can create a user profile
 
@@ -71,6 +75,44 @@ As a user I can remove a favourite connection that I own
 As a user I can't delete a favourite connection that I don't own
 
 As a database I can't store duplicate connections so that if something is deleted there isn't an old copy
+
+###  dog profile app [#55](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=60338529)
+
+As a admin I can create a dog profile
+
+As a user I can read a list of dog profiles
+
+As a user I can read a specific dog profile
+
+As a user I get an error if I put in an invalid dog profile ID
+
+As a admin I can edit a dog profile 
+
+As a non-admin I can't edit a dog profile
+
+As an admin I can delete a dog profile
+
+As a non-admin I can't delete a dog profile
+
+###  dog vaccine app [#56](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=60338694)
+
+When a dog profile is created an associated dog vaccine is created
+
+As a staff/admin I can read a list of dog vaccine
+
+As a staff/admin I can read a specific dog vaccine
+
+As a user I get an error if I put in an invalid dog vaccine ID
+
+As a admin I can edit a dog vaccine 
+
+As a non-admin I can't edit a dog vaccine
+
+As an admin I can delete a dog vaccine
+
+As a non-admin I can't delete a dog vaccine
+
+As a staff/admin I can get a list of out of vaccination dogs id's
 
 ###  request_adopt app [#51](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=60229234)
 

@@ -71,6 +71,10 @@ Time dependent would be then favourite and then emoji. With looking at allowing 
 
 ## Features
 
+Dog_vaccine automatically creates when dog_profile is created. Therefor generics.ListAPIView not generics.CreateListAPIView
+
+read-only sections in serializers.
+
 ### Existing Features
 
 
