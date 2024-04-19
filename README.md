@@ -75,6 +75,8 @@ Dog_vaccine automatically creates when dog_profile is created. Therefor generics
 
 read-only sections in serializers.
 
+is_staff  or is_superuser set in the admin panel and then can be used for permissions
+
 ### Existing Features
 
 
