@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.signals import post_save
 from dog_profile.models import DogProfile
 
 class DogVaccine(models.Model):
@@ -26,3 +27,13 @@ class DogVaccine(models.Model):
         
         def __str__(self):
             return f"{self.dog_name} vaccine"
+        
+def create_dog_vaccine(sender, instance, created, **kwargs):
+    """
+    Function to create a userprofile when the User model creates an
+    instance.
+    """
+    if created:
+        DogVaccine.objects.create(dog_id=instance)
+        
+post_save.connect(create_dog_vaccine, sender=DogProfile)

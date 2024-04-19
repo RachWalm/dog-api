@@ -4,7 +4,7 @@ from rest_framework import generics, permissions
 from .models import DogVaccine
 from .serializers import DogVaccineSerializer
 
-class DogVaccineList(generics.ListCreateAPIView):
+class DogVaccineList(generics.ListAPIView):
     serializer_class =  DogVaccineSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = DogVaccine.objects.all()
