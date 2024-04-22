@@ -12,10 +12,13 @@ class UserProfileSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.user_id
     
-    def get_is_staff(self, obj):
-        return obj.user_id.is_staff
+    def get_is_staff(self, user):
+        request = self.context['request']
+        return user.user_id.is_staff
     
     def get_is_superuser(self, obj):
+        print(self)
+        print(obj)
         return obj.user_id.is_superuser
     
     class Meta:
@@ -24,3 +27,13 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'id', 'user_id', 'created_at', 'updated_at', 'first_name', 'last_name',
             'email', 'is_owner', 'is_staff', 'is_superuser',
         ]
+        
+# def get_is_owner(self, obj):
+#         request = self.context['request']
+#         return request.user == obj.user_id
+    
+# def get_is_staff(self, obj):
+#     return obj.user_id.is_staff
+
+# def get_is_superuser(self, obj):
+#     return obj.user_id.is_superuser

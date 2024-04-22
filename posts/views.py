@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Post
 from .serializers import PostSerializer
-from dog_api.permissions import IsOwnerOrReadOnly
+from dog_api.permissions import IsOwnerOrReadOnly, IsStaffOrReadOnly, IsSuperUserOrReadOnly
 
 
 class PostList(APIView):
@@ -14,7 +14,7 @@ class PostList(APIView):
     """
     serializer_class = PostSerializer
     permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly
+        permissions.IsAdminUser
     ]
 
     def get(self, request):
@@ -48,7 +48,7 @@ class PostDetail(APIView):
     deletes the post specified
     """
     
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = PostSerializer
     
     def get_object(self, pk):
