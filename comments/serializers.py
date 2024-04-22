@@ -16,7 +16,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     def get_is_owner(self, obj):
         request = self.context['request']
-        return request.user == obj.owner
+        return request.user == obj.user_id
 
     def get_created_at(self, obj):
         return naturaltime(obj.created_at)
