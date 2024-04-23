@@ -7,7 +7,10 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return True
-        return obj.user_id == request.user
+        try:
+            return obj.user_id == request.user
+        except:
+            return {"message": "You cannot perform this action"}
     
 # class IsStaffAndOwnerOrReadOnly(permissions.BasePermission):
 #     def has_object_permission(self, request, view, obj):
@@ -29,7 +32,13 @@ class IsStaffOrReadOnly(permissions.BasePermission):
         else:
             if request.method in permissions.SAFE_METHODS:
                 return True
-            return (UserProfileSerializer.get_is_staff(request.user.userprofile, obj))
+            try:
+                print(UserProfileSerializer.get_is_staff(request.user.userprofile, obj))
+                print("hello")
+                return (UserProfileSerializer.get_is_staff(request.user.userprofile, obj))
+            except:
+                return {"message": "You cannot perform this action"}
+    
         
 class IsSuperUserOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):

@@ -89,6 +89,8 @@ is_staff  or is_superuser set in the admin panel and then can be used for permis
 
 1. every update on a post was a new post. but it wasn't it was just that the form was retaining the old information so it looked like you were updating but the action said POST not put and it only showed the post you had just created but was actually the page url was posts not post/id so it was confusing.
 
+2. for posts I wanted everyone to be able to read, only staff or above to create. This required making a separate url so that I could give different permissions to read and to create.
+
 
 ## Technologies
 

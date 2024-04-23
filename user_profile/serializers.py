@@ -13,12 +13,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
         return request.user == obj.user_id
     
     def get_is_staff(self, user):
-        request = self.context['request']
         return user.user_id.is_staff
     
     def get_is_superuser(self, obj):
-        print(self)
-        print(obj)
         return obj.user_id.is_superuser
     
     class Meta:

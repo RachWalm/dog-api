@@ -14,7 +14,7 @@ class PostList(APIView):
     """
     serializer_class = PostSerializer
     permission_classes = [
-        permissions.IsAdminUser
+        IsSuperUserOrReadOnly
     ]
 
     def get(self, request):
@@ -23,6 +23,14 @@ class PostList(APIView):
             posts, many=True, context={'request': request}
         )
         return Response(serializer.data)
+    
+class PostCreate(APIView):
+    """Create posts"""
+
+    serializer_class = PostSerializer
+    permission_classes = [
+        permissions.IsAdminUser
+    ]
 
     def post(self, request):
         serializer = PostSerializer(
@@ -48,7 +56,7 @@ class PostDetail(APIView):
     deletes the post specified
     """
     
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = PostSerializer
     
     def get_object(self, pk):
