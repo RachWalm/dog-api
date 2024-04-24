@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from dog_profile.models import DogProfile
+from user_profile.models import UserProfile
 
 class Favourite(models.Model):
     """

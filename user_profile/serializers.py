@@ -7,6 +7,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     is_staff = serializers.SerializerMethodField()
     is_superuser = serializers.SerializerMethodField()
+    fav_count = serializers.ReadOnlyField()
     
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -23,6 +24,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields= [
             'id', 'user_id', 'created_at', 'updated_at', 'first_name', 'last_name',
-            'email', 'is_owner', 'is_staff', 'is_superuser', 
+            'email', 'is_owner', 'is_staff', 'is_superuser', 'fav_count',
         ]
         

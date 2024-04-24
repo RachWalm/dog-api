@@ -6,7 +6,7 @@ from .serializers import DogProfileSerializer
 
 class DogProfileList(generics.ListCreateAPIView):
     serializer_class =  DogProfileSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = DogProfile.objects.all()
 
 class DogProfileDetail(generics.RetrieveUpdateDestroyAPIView):

@@ -14,10 +14,20 @@ class UserProfileList(generics.ListAPIView):
     and the relevant details from the user profile. No create as created
     when auth creates a User
     """
-    queryset = UserProfile.objects.all()
+    queryset = UserProfile.objects.annotate(
+        fav_count = Count('user_id__person', distinct=True)
+    ).order_by('-created_at')
     serializer_class = UserProfileSerializer
+    filter_backends = [
+        filters.OrderingFilter
+    ]
+    ordering_fields = [
+        'fav_count',
+        'updated_at',
+        'created_at'
+    ]
     
-class UserProfileDetail(generics.RetreiveUpdateAPIView):
+class UserProfileDetail(generics.RetrieveUpdateAPIView):
     """
     View to provide a single instance of a user profile from the
     database and the relevant details from that user profile.
