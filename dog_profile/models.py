@@ -57,5 +57,5 @@ class DogProfile(models.Model):
     class Meta:
         ordering = ['-created_at']
         
-        def __str__(self):
-            return f"{self.dog_name} received {self.received_date} profile"
+    def __str__(self):
+        return f"{self.dog_name} received {self.received_date} profile"

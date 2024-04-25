@@ -23,7 +23,7 @@ class RequestAdopt(models.Model):
     class Meta:
         ordering = ['-created_at']
         
-        def __str__(self):
-            return f"{self.user_id} interest in {self.dog_id}"
+    def __str__(self):
+        return f"{self.user_id} interest in {self.dog_id}"
         
         

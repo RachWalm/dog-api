@@ -25,8 +25,8 @@ class DogVaccine(models.Model):
     class Meta:
         ordering = ['-dog_id']
         
-        def __str__(self):
-            return f"{self.dog_name} vaccine"
+    def __str__(self):
+        return f"{self.dog_id} vaccine"
         
 def create_dog_vaccine(sender, instance, created, **kwargs):
     """

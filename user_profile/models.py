@@ -19,8 +19,8 @@ class UserProfile(models.Model):
     class Meta:
         ordering = ['-created_at']
         
-        def __str__(self):
-            return f"{self.first_name} {self.last_name}'s user profile"
+    def __str__(self):
+        return f"{self.user_id}'s user profile"
         
 def create_user_profile(sender, instance, created, **kwargs):
     """

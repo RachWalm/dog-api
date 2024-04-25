@@ -17,5 +17,5 @@ class Favourite(models.Model):
         ordering = ['-created_at']
         unique_together = ['user_id', 'dog_id']
         
-        def __str__(self):
-            return f"{self.dog_id} is one of {self.user_id}'s favourites"
+    def __str__(self):
+        return f"{self.dog_id} is one of {self.user_id}'s favourites"
