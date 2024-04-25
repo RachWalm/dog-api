@@ -19,7 +19,9 @@ class UserProfileList(generics.ListAPIView):
     serializer_class = UserProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = UserProfile.objects.annotate(
-        fav_count = Count('user_id__person', distinct=True)
+        post_count =  Count('user_id__post', distinct=True),
+        comment_count = Count('user_id__comment', distinct=True),
+        fav_count = Count('user_id__person', distinct=True),
     ).order_by('-created_at')
     serializer_class = UserProfileSerializer
     filter_backends = [

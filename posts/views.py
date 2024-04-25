@@ -1,5 +1,6 @@
 from django.http import Http404
-from rest_framework import status, permissions
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import status, permissions, filters, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Post
@@ -7,7 +8,7 @@ from .serializers import PostSerializer
 from dog_api.permissions import IsOwnerOrReadOnly, IsStaffOrReadOnly, IsSuperUserOrReadOnly
 
 
-class PostList(APIView):
+class PostList(generics.ListAPIView):
     """
     View to provide a list of all posts stored in the database
     and the relevant details from the posts
@@ -16,13 +17,31 @@ class PostList(APIView):
     permission_classes = [
         IsSuperUserOrReadOnly
     ]
+    queryset = Post.objects.all().order_by('-created_at')
+    filter_backends = [
+        filters.OrderingFilter,
+        filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
+    ordering_fields = [
+        'updated_at',
+        'created_at'
+    ]
+    search_fields = [
+        'title',
+        'content',
+    ]
+    filterset_fields = [
+        'dog_id',
+        'user_id',
+    ]
 
-    def get(self, request):
-        posts = Post.objects.all()
-        serializer = PostSerializer(
-            posts, many=True, context={'request': request}
-        )
-        return Response(serializer.data)
+    # def get(self, request):
+    #     posts = Post.objects.all()
+    #     serializer = PostSerializer(
+    #         posts, many=True, context={'request': request}
+    #     )
+    #     return Response(serializer.data)
     
 class PostCreate(APIView):
     """Create posts"""

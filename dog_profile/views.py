@@ -1,6 +1,6 @@
 from django.db.models import Count
 from rest_framework import generics, permissions, filters
-# from django_filters.rest_framework import DjangoFilterBackend
+from django_filters.rest_framework import DjangoFilterBackend
 from dog_api.permissions import IsOwnerOrReadOnly
 from .models import DogProfile
 from .serializers import DogProfileSerializer
@@ -15,7 +15,7 @@ class DogProfileList(generics.ListCreateAPIView):
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
-        # DjangoFilterBackend,
+        DjangoFilterBackend,
     ]
     ordering_fields = [
         'fav_count',
@@ -26,9 +26,14 @@ class DogProfileList(generics.ListCreateAPIView):
         'dog_name',
         'dog_breed',
     ]
-    # filterset_fields = [
-    #     'dog_id',
-    # ]
+    filterset_fields = [
+        'dog_gender',
+        'dog_size',
+        'home_cats',
+        'home_dogs',
+        'home_animals',
+        'home_children',
+    ]
 
 class DogProfileDetail(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = [IsOwnerOrReadOnly]
