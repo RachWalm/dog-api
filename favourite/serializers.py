@@ -11,11 +11,14 @@ class FavouriteSerializer(serializers.ModelSerializer):
     """
     user_id = serializers.ReadOnlyField(source='user_id.username')
     dog_name = serializers.ReadOnlyField(source='dog_id.dog_name')
+    person_count = serializers.ReadOnlyField()
+    favourited_count =serializers.ReadOnlyField()
 
     class Meta:
         model = Favourite
         fields = [
-            'id', 'user_id', 'created_at', 'dog_id', 'dog_name'
+            'id', 'user_id', 'created_at', 'dog_id', 'dog_name', 'person_count',
+            'favourited_count',
         ]
 
     def create(self, validated_data):

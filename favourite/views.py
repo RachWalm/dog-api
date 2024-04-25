@@ -1,4 +1,6 @@
-from rest_framework import generics, permissions
+from django.db.models import Count
+from rest_framework import generics, permissions, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from dog_api.permissions import IsOwnerOrReadOnly
 from .models import Favourite
 from .serializers import FavouriteSerializer
@@ -11,7 +13,26 @@ class FavouriteList(generics.ListCreateAPIView):
     Perform_create: creates actual link between user to dog
     """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Favourite.objects.all()
+    queryset = Favourite.objects.annotate(
+        favourited_count = Count('dog_id__favourited', distinct=True),
+        person_count = Count('user_id__person', distinct=True),
+    ).order_by('-created_at')
+    serializer_class = FavouriteSerializer
+    filter_backends = [
+        filters.OrderingFilter,
+        DjangoFilterBackend,
+    ]
+    ordering_fields = [
+        'dog_name',
+        'user_id',
+        'created_at',
+        'person_count',
+        'favourited_count',
+    ]
+    filterset_fields = [
+        'dog_id',
+        'user_id',
+    ]
     serializer_class = FavouriteSerializer
 
     def perform_create(self, serializer):

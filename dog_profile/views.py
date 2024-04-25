@@ -15,6 +15,7 @@ class DogProfileList(generics.ListCreateAPIView):
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
+        # DjangoFilterBackend,
     ]
     ordering_fields = [
         'fav_count',
@@ -25,6 +26,9 @@ class DogProfileList(generics.ListCreateAPIView):
         'dog_name',
         'dog_breed',
     ]
+    # filterset_fields = [
+    #     'dog_id',
+    # ]
 
 class DogProfileDetail(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = [IsOwnerOrReadOnly]
