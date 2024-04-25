@@ -136,6 +136,22 @@ As a user I can see a list of adoption requests so that I can see all the reques
 
 As a user I get an error if I put in an id that doesn't exist for an adoption request
 
+### Filtering/Sorting/Search [#]()
+
+As a user I can on the comments page order by updated_at and created_at, search the comment_content and filter by user so I can use the data for my own purpose
+
+As a user I can on the dog profile page count how many people have favourited this dog, order by fav count, updated_at and created_at, search the dog name and breed and filter by dog gender, size and if the home has cats, dogs, animals or children so I can use the data for my own purpose
+
+As a user I can on the dog vaccine page order by each vaccination next due and filter by overdue so I can use the data for my own purpose
+
+As a user I can on the favourite page count how many dogs a user has favourited, and how many times a dog has been favourited, order by dog name, user_id person_count and favourited_count as well as created_at, and filter by user or dog so I can use the data for my own purpose
+
+As a user I can on the posts page order by updated_at and created_at, search the title and content and filter by user or dog so I can use the data for my own purpose
+
+As a user I can on the request adopt page order by updated_at and created_at and filter by user or dog so I can use the data for my own purpose
+
+As a user I can on the user profile page count posts, comments, and number of dogs favourited, order by fav_count, updated_at and created_at and filter by how many dogs the user favourited so I can use the data for my own purpose
+
 ### Superuser [#46](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=59743374)
 
 As a super user I can log into the admin panel
