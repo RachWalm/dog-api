@@ -1,5 +1,7 @@
+
 from django.db.models import Count
-from rest_framework import generics, filters
+from rest_framework import generics, filters, permissions
+from django_filters.rest_framework import DjangoFilterBackend
 from django.http import Http404
 from rest_framework import status
 from rest_framework.views import APIView
@@ -14,17 +16,23 @@ class UserProfileList(generics.ListAPIView):
     and the relevant details from the user profile. No create as created
     when auth creates a User
     """
+    serializer_class = UserProfileSerializer
+    permission_classes = [IsOwnerOrReadOnly]
     queryset = UserProfile.objects.annotate(
         fav_count = Count('user_id__person', distinct=True)
     ).order_by('-created_at')
     serializer_class = UserProfileSerializer
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        DjangoFilterBackend,
     ]
     ordering_fields = [
         'fav_count',
         'updated_at',
         'created_at'
+    ]
+    filterset_fields = [
+        'user_id__person__dog_id',
     ]
     
 class UserProfileDetail(generics.RetrieveUpdateAPIView):

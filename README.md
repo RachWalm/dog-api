@@ -77,6 +77,8 @@ read-only sections in serializers.
 
 is_staff  or is_superuser set in the admin panel and then can be used for permissions
 
+user profile has a filter that shows which dogs it is following
+
 ### Existing Features
 
 
@@ -222,9 +224,8 @@ bootstrap
 
 ```pip3 install django-bootstrap5```
 
-whitenoise
-
-```pip3 install whitenoise```
+django filters
+```pip install django-filter```
 
 allauth
 
