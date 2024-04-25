@@ -1,13 +1,15 @@
 from django.db.models import Count
-from rest_framework import generics, permissions, filters
+from rest_framework import generics, permissions, filters, status
+from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
-from dog_api.permissions import IsOwnerOrReadOnly
+from rest_framework.views import APIView
+from dog_api.permissions import IsOwnerOrReadOnly, IsSuperUser, IsSuperUserOrReadOnly, IsStaffOrReadOnly
 from .models import DogProfile
 from .serializers import DogProfileSerializer
 
-class DogProfileList(generics.ListCreateAPIView):
+class DogProfileList(generics.ListAPIView):
     serializer_class =  DogProfileSerializer
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [IsStaffOrReadOnly]
     queryset = DogProfile.objects.annotate(
         fav_count = Count('favourited', distinct=True)
     ).order_by('-created_at')
@@ -34,9 +36,30 @@ class DogProfileList(generics.ListCreateAPIView):
         'home_animals',
         'home_children',
     ]
+    
+class DogProfileCreate(APIView):
+    """Create dog profiles"""
+
+    serializer_class = DogProfileSerializer
+    permission_classes = [
+        IsSuperUser
+    ]
+
+    def post(self, request):
+        serializer = DogProfileSerializer(
+            data=request.data, context={'request': request}
+        )
+        if serializer.is_valid():
+            serializer.save(user_id=request.user)
+            return Response(
+                serializer.data, status=status.HTTP_201_CREATED
+            )
+        return Response(
+            serializer.errors, status=status.HTTP_400_BAD_REQUEST
+        )
 
 class DogProfileDetail(generics.RetrieveUpdateDestroyAPIView):
-    # permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsSuperUser]
     serializer_class =  DogProfileSerializer
     queryset = DogProfile.objects.all()
     

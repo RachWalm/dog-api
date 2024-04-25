@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import UserProfile
 from .serializers import UserProfileSerializer
-from dog_api.permissions import IsOwnerOrReadOnly
+from dog_api.permissions import IsOwnerOrReadOnly, IsSuperUser, IsSuperUserOrReadOnly, IsStaffOrReadOnly
 
 class UserProfileList(generics.ListAPIView):
     """
@@ -17,7 +17,7 @@ class UserProfileList(generics.ListAPIView):
     when auth creates a User
     """
     serializer_class = UserProfileSerializer
-    permission_classes = [IsOwnerOrReadOnly]
+    # permission_classes = [IsStaffOrReadOnly]
     queryset = UserProfile.objects.annotate(
         post_count =  Count('user_id__post', distinct=True),
         comment_count = Count('user_id__comment', distinct=True),

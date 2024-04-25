@@ -3,5 +3,6 @@ from dog_profile import views
 
 urlpatterns = [
     path('dog_profile/', views.DogProfileList.as_view()),
+    path('dog_profile_create/', views.DogProfileCreate.as_view()),
     path('dog_profile/<int:pk>/', views.DogProfileDetail.as_view())
 ]

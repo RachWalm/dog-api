@@ -5,7 +5,7 @@ from .models import DogVaccine
 from .serializers import DogVaccineSerializer
 
 class DogVaccineList(generics.ListAPIView):
-    permission_classes = [IsSuperUser]
+    permission_classes = [permissions.IsAdminUser]
     serializer_class =  DogVaccineSerializer
     queryset = DogVaccine.objects.all()
     filter_backends = [
@@ -28,7 +28,7 @@ class DogVaccineList(generics.ListAPIView):
         'overdue',
     ]
 
-class DogVaccineDetail(generics.RetrieveUpdateDestroyAPIView):
+class DogVaccineDetail(generics.RetrieveUpdateAPIView):
     permission_classes = [IsSuperUser]
     serializer_class =  DogVaccineSerializer
     queryset = DogVaccine.objects.all()

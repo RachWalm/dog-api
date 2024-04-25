@@ -4,9 +4,9 @@ from dog_api.permissions import IsOwnerOrReadOnly
 from .models import RequestAdopt
 from .serializers import RequestAdoptSerializer
 
-class RequestAdoptList(generics.ListCreateAPIView):
+class RequestAdoptList(generics.ListAPIView):
     serializer_class =  RequestAdoptSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAdminUser]
     queryset = RequestAdopt.objects.all()
     filter_backends = [
         DjangoFilterBackend,
@@ -21,6 +21,10 @@ class RequestAdoptList(generics.ListCreateAPIView):
         'user_id',
         'dog_id',
     ]
+    
+class RequestAdoptCreate(generics.CreateAPIView):
+    serializer_class =  RequestAdoptSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     
 class RequestAdoptDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
