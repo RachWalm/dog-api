@@ -136,7 +136,7 @@ As a user I can see a list of adoption requests so that I can see all the reques
 
 As a user I get an error if I put in an id that doesn't exist for an adoption request
 
-### Filtering/Sorting/Search [#]()
+### Filtering/Sorting/Search [#56](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=60338694)
 
 As a user I can on the comments page order by updated_at and created_at, search the comment_content and filter by user so I can use the data for my own purpose
 
@@ -151,6 +151,29 @@ As a user I can on the posts page order by updated_at and created_at, search the
 As a user I can on the request adopt page order by updated_at and created_at and filter by user or dog so I can use the data for my own purpose
 
 As a user I can on the user profile page count posts, comments, and number of dogs favourited, order by fav_count, updated_at and created_at and filter by how many dogs the user favourited so I can use the data for my own purpose
+
+### Permission classes [#58](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=61014500)
+
+As a user that hasn't logged in I can view posts, comments and dogs profiles
+
+As an authenticated user I can on the comments page create, read, update and delete comments I have made, but only view other users comments
+
+As an user on the dog profile page I can view the dogs profile but can't create, update or delete a dog profile.
+
+As a staff or super user  on the dog profile page I can create, view, update and delete a dog profile.
+
+As a user on the dog vaccine page my access is blocked unless 
+1. staff and superusers can read the dog vaccine information
+2. superusers can also update 
+Delete is denied as it is created by creation of the dog profile and deleted by cascade of deletion of the dog profile only to avoid extraneous records in the database.
+
+As an anonymous user on the favourite page I can see favourites, as an authenticated user I can create and delete them. There is no update function as the link exists or doesn't - there are no variables to update.
+
+All users (annoymous to super user) on the posts page can read posts, staff and above can create, update and delete their own posts but not anyone elses.
+
+As an annoymous user access is blocked to the request adopt page. As an authenticated user I can view/create/update/delete my own request but not anyone elses. super users can view all posts but not update or delete any that do not belong to them.
+
+As an authenticated user on the user profile I can read/update my profile but not create or delete as this is done by the auth model when a User is created.
 
 ### Superuser [#46](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=59743374)
 
