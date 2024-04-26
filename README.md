@@ -8,29 +8,34 @@ Welcome to [Dog API]().
 
 It can be accessed through [Dog API]().
 
-The Dog API is designed to allow data to be created/read/updated and deleted regarding a dog rescue/adoption service. It is essential that once the dogs have gone into a rescue their information is accurately and sustainably retained, and the API allows this information to be created, accessed and manipulated as an interface between a front end website and a database retaining the information.
+The Dog API is designed to allow data to be created/read/updated and deleted regarding a dog rescue/adoption service. It is essential that once the dogs have gone into a rescue their information is accurately and sustainably retained and accessible, and the API allows this information to be created, accessed and manipulated as an interface between a front end website and a database retaining the information.
 
-As these rescues are often run by charities and volunteers, using IT solutions to gain exposure to the public and retain information on the dogs is often under-utilised, the people using it often have a low level of technical knowledge. This means that they would definitely not be able to access the data straight from the data base and need a connection to a user-friendly website. Also as the intent of the overall project is two-fold, 
+As these rescues are often run by charities and volunteers, using IT solutions to gain exposure to the public and retain information on the dogs is often under-utilised. The people using it often have a low level of technical knowledge. This means that they would definitely not be able to access the data straight from the data base and need a connection to a user-friendly website that is intuitive to use. The API must make it easy for the users to perform their activities.
+
+The intent of the overall project is two-fold, 
 1. to get the animals known to potential adopters
 2. retain information on the dogs for use in the rescue regarding their history and needs. 
 
 This means that it is essential that the information in the database is can be accessed and manipulated easily to achieve these goals, by all relevant parties with ease.
 
-Most websites that are for rescues just have a photo a couple of details and a paragraph of information to give an adopter information on the dogs. To step up the advertising campaign to get dogs adopted, rather than being limited to these features, this site endeavours to show their personalities by getting the public involved in their timelines with posts/comments from walkers and the public. This means that as well as a profile for the dog, there is a requirement to store posts, comments etc from users as well as data regarding queries.
+Most websites that are for rescues just have a photo a couple of details and a paragraph of information to give a potential adopter information on the dogs. To step up the advertising campaign to get dogs adopted, rather than being limited to these features, this site endeavours to show their personalities by getting the public involved in their timelines with posts/comments from walkers and the public. This means that as well as a profile for the dog, there is a requirement to store posts, comments etc from users as well as data regarding queries from potential adopters.
 
-The system will mean that the relevant information that the rescue requires day to day about the dog can be held in a profile, of which some parts are made public and the dog will also get a timeline, where walkers/volunteers/people involved with the dog can post pictures and stories to make the dog more appealing. 
+The system will mean that the relevant information that the rescue requires day to day about the dog can be held in a profile(and add-ons regarding vaccination etc.), of which some parts are made public and the dog will also get a timeline, where walkers/volunteers/people involved with the dog can post pictures and stories to make the dog more appealing. This is particularly important for dogs that remain at the rescue for a significant amount of time as it raises their visibility and gets their personality/quirks known.
 
 ## UX design
 
-The user of the API is intended to be a web based site that provides all required information in a way that can be easily used to produce an efficient website. The website can then be used by rescue admin, walkers, supporters and adopters.
+The user of the API is intended to be a web based site that provides all required information in a way that can be easily used to produce an efficient website. The website can then be used by rescue admin, walkers, supporters and adopters. The API will have four levels of access:
 
-The data will be privately owned by the dog rescue and as such will need to be restricted to those with appropriate approvals, some read-only data will be available to the public, but to perform activities on the data will require relevant registration/login/authorisation.
+1. Anonymous not logged in user
+2. Authenticated User
+3. Staff User
+4. Superuser
+
+Staff and superuser permissions will set in the admin panel.
+
+The data will be privately owned by the dog rescue and as such will need to be restricted to those with appropriate approvals, some read-only data will be available to the public, but to perform activities on the data will require relevant registration/login/authorisation(minimum user level).
 
 All of this data needs to be manipulated by the API in a way that is logical and can be interpreted to produce the features on a website with ease by the website developer.
-
-Most of the posts app and comments app will be very similar to the walkthrough provided by Code Institute as part of this course of study [git hub for walkthrough](https://github.com/Code-Institute-Solutions/drf-api/tree/ed54af9450e64d71bc4ecf16af0c35d00829a106). I therefore credit those apps as being substantially based on the code institute course work. There are some slight changes. The user profile does not feature an image of the person as part of the user profile and the identification of the person posting or commenting on the posts is their first name not their username - so it has been adapted to allow for these changes. As the code provided does more or less exactly as required it is wasteful to redo coding that is already available and effective.
-
-The favourite relationship was derived from the following app in the walkthrough.
 
 ### Relationship diagram
 
@@ -44,7 +49,7 @@ There were several things that needed to be altered with the idea. So the diagra
 
 ![discussed diagram](/document/discussion-ERD.png)
 
-1. It was decided to drop the custom_user and use a user and user_profile. This would make it similar to recent experience. The avatar was unnecessary as the site is about the dogs not the people (this could always be added to the user_profile as a future improvement). The type of account - which was going to be admin, staff, adopted owner or user will only be necessary if the adopted owner functionality was going to be implemented. The admin site can be used to manually set superusers, staff etc options.
+1. It was decided to drop the custom_user and use a user and user_profile. This would make it similar to recent experience. The avatar was unnecessary as the site is about the dogs not the people (this could always be added to the user_profile as a future improvement). The type of account - which was going to be admin, staff, adopted owner or user will only be necessary if the adopted owner functionality was going to be implemented. The admin site can be used to manually set superusers, staff etc options. 
 
 2. It was noticed that there was a queries page in the wireframes for the front end but no where to store the information that would be put into that form to make a query about the dogs which was essential functionality.
 
@@ -53,6 +58,11 @@ There were several things that needed to be altered with the idea. So the diagra
 Therefore, the priorities were going to be that it was essential to do user_profile, dog_profile, posts, comments and request_form (user would be set up as part of registration functionality and not by part of this development).
 
 Time dependent would be then favourite and then emoji. With looking at allowing an adopter to post on their dogs timeline as a final functionality that would probably have to be a future development.
+
+Most of the posts app and comments app will be very similar to the walkthrough provided by Code Institute as part of this course of study [git hub for walkthrough](https://github.com/Code-Institute-Solutions/drf-api/tree/ed54af9450e64d71bc4ecf16af0c35d00829a106). I therefore credit those apps for this code is substantially based on the code institute course work. There are some slight changes. The user profile does not feature an image of the person (about the dogs not the people) as part of the user profile and the identification of the person posting or commenting on the posts is their first name not their username - so it has been adapted to allow for these changes. As the code provided does more or less exactly as required it is wasteful to redo coding that is already available and effective.
+
+The favourite relationship was derived from the following app in the walkthrough [git hub for walkthrough](https://github.com/Code-Institute-Solutions/drf-api/tree/ed54af9450e64d71bc4ecf16af0c35d00829a106). User to dog profile link instead of user to user.
+
 
 #### Final implemented diagram
 
@@ -71,13 +81,27 @@ Time dependent would be then favourite and then emoji. With looking at allowing 
 
 ## Features
 
-Dog_vaccine automatically creates when dog_profile is created. Therefor generics.ListAPIView not generics.CreateListAPIView
+### Automatic record creation for user profile and dog vaccine
 
-read-only sections in serializers.
+As for each user and each dog it was requirement that the user had a user profile and the dog had a vaccination record, user_profile record automatically creates when the auth app sets up a User and a dog_vaccine record automatically creates when dog_profile is created. Therefore generics.ListAPIView not generics.CreateListAPIView was used in the views as there should never be any reason to create these records. You would never want a user profile or dog vaccine record without the corresponding user or dog profile.
 
-is_staff  or is_superuser set in the admin panel and then can be used for permissions
+These were created with code :
 
-user profile has a filter that shows which dogs it is following
+```python
+def create_dog_vaccine(sender, instance, created, **kwargs):
+    """
+    Function to create a userprofile when the User model creates an
+    instance.
+    """
+    if created:
+        DogVaccine.objects.create(dog_id=instance)
+        
+post_save.connect(create_dog_vaccine, sender=DogProfile)
+```
+
+### datetime vs date fields
+
+All the created at and updated at information required datetime fields (so posts and comments could be sorted by ascending and descending through out the day) but this level of accuracy was not required to things such as the day a dog arrived/rehomed at the rescue or when vaccinations were given. Therefore, these two were given two different field types and the easy to read formats are different.
 
 Date and time format are set by putting in settings : 
 
@@ -90,9 +114,49 @@ REST_FRAMEWORK = {
 ```
 this give day of the week, day of month number and month three letters and year. with the time in hours:minutes:seconds
 
-Posts and comments are overridden with naturalise time so that it is read against how long it has been since it was posted.
+Posts and comments are overridden with humanize naturaltime so that it is read against how long it has been since it was posted.
 
-### Existing Features
+This required serializer methods :
+
+```python 
+created_at = serializers.SerializerMethodField()
+updated_at = serializers.SerializerMethodField()
+
+def get_created_at(self, obj):
+    return naturaltime(obj.created_at)
+
+def get_updated_at(self, obj):
+    return naturaltime(obj.updated_at)
+```
+
+### Serializer read-only fields
+
+Serializer readonlyfields were used for foreign key values and for values specified in the queryset annoations, so all this information could be retrieved.
+
+### Permissions
+
+is_staff or is_superuser set in the admin panel and then can be used for permissions.py in the dog_api to allow the appropriate permission to the various bits of data.
+
+### Listview searching/ordering/filtering
+
+The rest framework and django backend filters were used to implement the views filters.
+
+```python
+from rest_framework import generics, permissions, filters
+from django_filters.rest_framework import DjangoFilterBackend
+
+...........
+
+filter_backends = [
+        filters.OrderingFilter,
+        filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
+```
+
+Which fields to perform the tasks on were defined in ordering_fileds, search_fields and filterset_fields.
+
+### Existing Features - How to...
 
 
 ### Potential Future Feature Developments 
@@ -299,5 +363,10 @@ Code institute tutors - Who worked very hard and often were very motivational an
 
 W3 website for many clarifications of syntax.
 
-Django documentation from which I learned a great deal.
+Django rest framework documentation from which I learned a great deal.
+
+Most of the posts app and comments app will be very similar to the walkthrough provided by Code Institute as part of this course of study [git hub for walkthrough](https://github.com/Code-Institute-Solutions/drf-api/tree/ed54af9450e64d71bc4ecf16af0c35d00829a106). I therefore credit those apps for this code is substantially based on the code institute course work. There are some slight changes. The user profile does not feature an image of the person (about the dogs not the people) as part of the user profile and the identification of the person posting or commenting on the posts is their first name not their username - so it has been adapted to allow for these changes. As the code provided does more or less exactly as required it is wasteful to redo coding that is already available and effective.
+
+The favourite relationship was derived from the following app in the walkthrough [git hub for walkthrough](https://github.com/Code-Institute-Solutions/drf-api/tree/ed54af9450e64d71bc4ecf16af0c35d00829a106). Although instead of user to user link it had to be a user to dog profile link.
+
 
