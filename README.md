@@ -79,6 +79,19 @@ is_staff  or is_superuser set in the admin panel and then can be used for permis
 
 user profile has a filter that shows which dogs it is following
 
+Date and time format are set by putting in settings : 
+
+```python
+REST_FRAMEWORK = {
+
+    'DATETIME_FORMAT': "%A %d %b %Y %H:%M:%S",
+    'DATE_FORMAT' : "%A %d %b %Y",
+}
+```
+this give day of the week, day of month number and month three letters and year. with the time in hours:minutes:seconds
+
+Posts and comments are overridden with naturalise time so that it is read against how long it has been since it was posted.
+
 ### Existing Features
 
 
