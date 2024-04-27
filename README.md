@@ -83,7 +83,7 @@ The favourite relationship was derived from the following app in the walkthrough
 
 ### Automatic record creation for user profile and dog vaccine
 
-As for each user and each dog it was requirement that the user had a user profile and the dog had a vaccination record, user_profile record automatically creates when the auth app sets up a User and a dog_vaccine record automatically creates when dog_profile is created. Therefore generics.ListAPIView not generics.CreateListAPIView was used in the views as there should never be any reason to create these records. You would never want a user profile or dog vaccine record without the corresponding user or dog profile.
+As for each user and each dog it was requirement that the user had a user profile and the dog had a vaccination record, user_profile record automatically creates when the auth app sets up a User and a dog_vaccine record automatically creates when dog_profile is created. Therefore generics.ListAPIView not generics.CreateListAPIView was used in the views as there should never be any reason to create these records. You would never want a user profile or dog vaccine record without the corresponding user or dog profile. These records are deleted by CASCADE so that there aren't orphan records either way.
 
 These were created with code :
 
@@ -157,6 +157,67 @@ filter_backends = [
 Which fields to perform the tasks on were defined in ordering_fileds, search_fields and filterset_fields.
 
 ### Existing Features - How to...
+
+#### Login
+
+#### Logout
+
+#### Create and change user access
+
+This has to be done in the admin panel if using the the API directly. A website will be able to create users by communicating with the installed auth django library. In the terminal in the IDE superusers can be created by 
+
+```python
+python manage.py createsuperuser
+```
+
+The User model is part of the auth. When this is created it automatically sets up a record for the user_profile see 'Automatic record creation for user profile and dog vaccine' section.
+
+#### Update user profile
+
+#### Posts creation
+
+#### Posts viewing
+
+#### Posts update
+
+#### Posts deletion
+
+#### Comments creation
+
+#### Comments viewing
+
+#### Comments update
+
+#### Comments deletion
+
+#### Dog profile creation
+
+This automatically creates a dog vaccine record
+
+#### Dog profile viewing
+
+#### Dog profile update
+
+#### Dog profile deletion
+
+#### Dog vaccine update
+
+#### Dog vaccine viewing
+
+#### Favourite connection creation
+
+#### Favourite connection deletion
+
+#### Favourite connection viewing
+
+#### Request adopt creation
+
+#### Request adopt update
+
+#### Request adopt viewing
+
+#### Request adopt delete
+
 
 
 ### Potential Future Feature Developments 
