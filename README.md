@@ -318,21 +318,14 @@ and the purple 'create app' button was pressed.
 
 9. The deployment method was selected by clicking on the GitHub icon and it stated that it was connected to github
 
-![method](document/method-github.png)
+![method](document/method-find.png)
 
-10. The repository was chosen by searching my github
+10. The repository was chosen by searching my github and clicking connect in the above image
 
-![find](document/find.png)
-![connect](document/connect.png)
-![connected](document/connected.png)
 
-11. Automatic deployment was chosen so that it would update every time the changes were pushed to git
+11. It was deployed
 
-![auto](document/auto.png)
-
-12. It was deployed
-
-![deployed](document/deployed.png)
+![deployed](document/deploy-branch.png)
 
 In the final version it needs to have debug (in settings.py) set to False (was True during development) and as mentioned above the DISABLE_COLLECTSTATIC removed from the config vars.
 
