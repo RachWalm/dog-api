@@ -369,6 +369,14 @@ dj-rest-auth
 
 ```pip3 install dj-rest-auth==2.1.9```
 
+for registration
+
+```pip install 'dj-rest-auth[with_social]'```
+
+JWT tokens
+
+```pip install djangorestframework-simplejwt```
+
 allauth
 
 ```pip3 install django-allauth```
