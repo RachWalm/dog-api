@@ -6,6 +6,10 @@
 
 - [PEP8Online.com](https://pep8ci.herokuapp.com/) was used to validate python coding
 
+## Automated testing
+
+Some automated testing was performed in posts.testing.py
+
 ## User stories
 
 ### user_profile app [#43](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=59544320)

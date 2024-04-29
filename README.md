@@ -365,6 +365,10 @@ bootstrap
 django filters
 ```pip install django-filter```
 
+dj-rest-auth
+
+```pip3 install dj-rest-auth==2.1.9```
+
 allauth
 
 ```pip3 install django-allauth```
