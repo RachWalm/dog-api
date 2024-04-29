@@ -284,19 +284,19 @@ and create a Procfile (with a capital P) containing:
 Ensure that the version that you want to deploy has been added, committed and pushed to GitHub (as Heroku will take it from the repository).
 
 1. [Heroku](https://www.heroku.com/) was used to deploy.
-2. Once logged onto the website, using the drop down menu in the top right we went to the dashboard.
-![dashboard](document/go-to-dashboard.png)
+2. Once logged onto the website, using the heroku logo we went to the dashboard.
+![lgog](document/logo.png)
 3. From here we are able to create a new app either by clicking on the icon (which is what we did)
 
-![icon](document/create-new-app.png)
+![icon](document/icon.png)
 
 or the drop down menu
 
-![dropdown](document/create-new-app-dropdown.png)
+![dropdown](document/dropdown.png)
 
-4. Next the app was named * and the Europe region chosen in these fields
+4. Next the app was named dog-rescue and the Europe region chosen in these fields
 
-![name](document/name-and-region.png)
+![name](document/create.png)
 
 and the purple 'create app' button was pressed.
 
@@ -314,11 +314,11 @@ and the purple 'create app' button was pressed.
 
 8. Now we used the menu navigation bar again, this time to select deploy
 
-![nav](document/nav-bar.png)
+![nav](document/deploy-tab.png)
 
 9. The deployment method was selected by clicking on the GitHub icon and it stated that it was connected to github
 
-![method](document/choose-git.png)
+![method](document/method-github.png)
 
 10. The repository was chosen by searching my github
 
@@ -356,7 +356,7 @@ Django-rest framework
 
 dj database url and psycopg2
 
-```pip3 install dj_database_url psycopg2```
+```pip3 install dj_database_url==0.5.0 psycopg2```
 
 bootstrap
 
