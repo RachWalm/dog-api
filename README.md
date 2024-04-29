@@ -381,6 +381,10 @@ allauth
 
 ```pip3 install django-allauth```
 
+gunicorn and CORS
+
+```pip3 install gunicorn django-cors-headers```
+
 Or if you wish to install them all at once you can use the requirements.txt file (I couldn't as the requirements.txt is made from what is installed).
 In the IDE terminal:
  ```
