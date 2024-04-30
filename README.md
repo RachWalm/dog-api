@@ -231,6 +231,8 @@ This automatically creates a dog vaccine record
 
 2. for posts I wanted everyone to be able to read, only staff or above to create. This required making a separate url so that I could give different permissions to read and to create.
 
+3. logout fixed as per CI walkthrough in second to last text.
+
 
 ## Technologies
 
