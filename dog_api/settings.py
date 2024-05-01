@@ -62,11 +62,12 @@ REST_AUTH_SERIALIZERS = {
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
    os.environ.get('ALLOWED_HOST'),
    'localhost', '127.0.0.1',
+   '8000-rachwalm-dogapi-yx7u8zwd81j.ws-eu110.gitpod.io'
 ]
 
 if 'CLIENT_ORIGIN' in os.environ:
@@ -79,6 +80,10 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
     ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
