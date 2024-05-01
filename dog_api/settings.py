@@ -70,6 +70,7 @@ ALLOWED_HOSTS = [
    '8000-rachwalm-dogapi-yx7u8zwd81j.ws-eu110.gitpod.io'
 ]
 
+<<<<<<< HEAD
 # if 'CLIENT_ORIGIN' in os.environ:
 #     CORS_ALLOWED_ORIGIN = [
 #         os.environ.get('CLIENT_ORIGIN')
@@ -83,6 +84,19 @@ ALLOWED_HOSTS = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+=======
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN')
+    ]
+
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    extracted_url = re.match(r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
+    ]
+    
+>>>>>>> 5e4501e6de93d817dcd96f4013031e2d409749ca
 CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
