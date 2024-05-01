@@ -69,6 +69,11 @@ ALLOWED_HOSTS = [
    'localhost', '127.0.0.1',
 ]
 
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGIN = [
+        os.environ.get('CLIENT_ORIGIN')
+    ]
+
 if 'CLIENT_ORIGIN_DEV' in os.environ:
     extracted_url = re.match(r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
     CORS_ALLOWED_ORIGIN_REGEXES = [
