@@ -81,9 +81,12 @@ ALLOWED_HOSTS = [
 #         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
 #     ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r'^https://.*\.gitpod\.io$',
+]
 
 CORS_ALLOW_CREDENTIALS = True
+
 
 # Application definition
 
