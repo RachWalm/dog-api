@@ -14,9 +14,9 @@ class PostList(generics.ListCreateAPIView):
     and the relevant details from the posts
     """
     serializer_class = PostSerializer
-    permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly
-    ]
+    # permission_classes = [
+    #     IsSuperUserOrReadOnly
+    # ]
     queryset = Post.objects.all().order_by('-created_at')
     filter_backends = [
         filters.OrderingFilter,
@@ -36,9 +36,6 @@ class PostList(generics.ListCreateAPIView):
         'user_id',
     ]
 
-    def perform_create(self, serializer):
-        serializer.save(user_id=self.request.user)
-
     # def get(self, request):
     #     posts = Post.objects.all()
     #     serializer = PostSerializer(
@@ -46,26 +43,26 @@ class PostList(generics.ListCreateAPIView):
     #     )
     #     return Response(serializer.data)
     
-# class PostCreate(APIView):
-#     """Create posts"""
+class PostCreate(APIView):
+    """Create posts"""
 
-#     serializer_class = PostSerializer
-#     permission_classes = [
-#         permissions.IsAdminUser
-#     ]
+    serializer_class = PostSerializer
+    permission_classes = [
+        permissions.IsAdminUser
+    ]
 
-#     def post(self, request):
-#         serializer = PostSerializer(
-#             data=request.data, context={'request': request}
-#         )
-#         if serializer.is_valid():
-#             serializer.save(user_id=request.user)
-#             return Response(
-#                 serializer.data, status=status.HTTP_201_CREATED
-#             )
-#         return Response(
-#             serializer.errors, status=status.HTTP_400_BAD_REQUEST
-#         )
+    def post(self, request):
+        serializer = PostSerializer(
+            data=request.data, context={'request': request}
+        )
+        if serializer.is_valid():
+            serializer.save(user_id=request.user)
+            return Response(
+                serializer.data, status=status.HTTP_201_CREATED
+            )
+        return Response(
+            serializer.errors, status=status.HTTP_400_BAD_REQUEST
+        )
 
 
 class PostDetail(APIView):
