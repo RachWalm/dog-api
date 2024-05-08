@@ -13,6 +13,21 @@ class PostSerializer(serializers.ModelSerializer):
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
     
+    def validate_image(self, value):
+        if value.size > 1024 * 1024 *2:
+            raise serializers.ValidationError(
+                'Image size larger than 2MB!'
+            )
+        if value.image.width > 4096:
+            raise serializers.ValidationError(
+                'Image width is larger than 4096 px'
+            )
+        if value.image.height > 4066:
+            raise serializers.ValidationError(
+                'Image height is larger than 4096 px'
+            )
+        return value
+    
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.user_id
