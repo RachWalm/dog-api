@@ -63,6 +63,9 @@ class PostCreate(APIView):
         return Response(
             serializer.errors, status=status.HTTP_400_BAD_REQUEST
         )
+        
+    def perform_create(self, serializer):
+        serializer.save(user_id=self.request.user)
 
 
 class PostDetail(APIView):
