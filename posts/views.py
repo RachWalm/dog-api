@@ -36,6 +36,9 @@ class PostList(generics.ListAPIView):
         'user_id',
     ]
 
+    def perform_create(self, serializer):
+        serializer.save(user_id=self.request.user)
+        
     # def get(self, request):
     #     posts = Post.objects.all()
     #     serializer = PostSerializer(
@@ -43,14 +46,14 @@ class PostList(generics.ListAPIView):
     #     )
     #     return Response(serializer.data)
     
-class PostCreate(generics.CreateAPIView):
+class PostCreate(generics.ListCreateAPIView):
     """Create posts"""
 
     serializer_class = PostSerializer
     permission_classes = [
         permissions.IsAdminUser
     ]
-
+    queryset = Post.objects.all().order_by('-created_at')
     # def post(self, request):
     #     serializer = PostSerializer(
     #         data=request.data, context={'request': request}
