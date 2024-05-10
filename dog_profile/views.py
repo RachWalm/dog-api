@@ -37,7 +37,7 @@ class DogProfileList(generics.ListAPIView):
         'home_children',
     ]
     
-class DogProfileCreate(APIView):
+class DogProfileCreate(generics.CreateAPIView):
     """Create dog profiles"""
 
     serializer_class = DogProfileSerializer
@@ -45,18 +45,18 @@ class DogProfileCreate(APIView):
         IsSuperUser
     ]
 
-    def post(self, request):
-        serializer = DogProfileSerializer(
-            data=request.data, context={'request': request}
-        )
-        if serializer.is_valid():
-            serializer.save(user_id=request.user)
-            return Response(
-                serializer.data, status=status.HTTP_201_CREATED
-            )
-        return Response(
-            serializer.errors, status=status.HTTP_400_BAD_REQUEST
-        )
+    # def post(self, request):
+    #     serializer = DogProfileSerializer(
+    #         data=request.data, context={'request': request}
+    #     )
+    #     if serializer.is_valid():
+    #         serializer.save(user_id=request.user)
+    #         return Response(
+    #             serializer.data, status=status.HTTP_201_CREATED
+    #         )
+    #     return Response(
+    #         serializer.errors, status=status.HTTP_400_BAD_REQUEST
+    #     )
 
 class DogProfileDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsSuperUser]
