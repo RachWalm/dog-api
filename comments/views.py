@@ -22,6 +22,7 @@ class CommentList(generics.ListCreateAPIView):
     ]
     filterset_fields = [
         'user_id',
+        'post_id',
     ]
     
     def perform_create(self, serializer):

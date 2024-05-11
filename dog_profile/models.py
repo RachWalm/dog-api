@@ -49,10 +49,10 @@ class DogProfile(models.Model):
     at_rescue = models.BooleanField(default=True)
     status = models.IntegerField(choices=StatusChoices.STATUS_CHOICES, default=0)
     general = models.TextField()
-    home_cats = models.BooleanField(default=False)
-    home_dogs = models.BooleanField(default=False)
-    home_animals = models.BooleanField(default=False)
-    home_children = models.BooleanField(default=False)
+    home_cats = models.BooleanField(default=True)
+    home_dogs = models.BooleanField(default=True)
+    home_animals = models.BooleanField(default=True)
+    home_children = models.BooleanField(default=True)
     
     class Meta:
         ordering = ['-created_at']
