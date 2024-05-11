@@ -46,13 +46,13 @@ class DogProfile(models.Model):
         upload_to='images/',
         default='../dog-image-na_zmmfot'
     )
-    at_rescue = models.BooleanField(default=True)
+    at_rescue = models.BooleanField(default=False)
     status = models.IntegerField(choices=StatusChoices.STATUS_CHOICES, default=0)
     general = models.TextField()
-    home_cats = models.BooleanField(default=True)
-    home_dogs = models.BooleanField(default=True)
-    home_animals = models.BooleanField(default=True)
-    home_children = models.BooleanField(default=True)
+    home_cats = models.BooleanField(default=False)
+    home_dogs = models.BooleanField(default=False)
+    home_animals = models.BooleanField(default=False)
+    home_children = models.BooleanField(default=False)
     
     class Meta:
         ordering = ['-created_at']
