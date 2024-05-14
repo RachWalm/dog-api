@@ -2,25 +2,25 @@
 
 ## Introduction
 
-Welcome to [Dog API]().
+Welcome to [Dog API](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/).
 
 ![title]()
 
-It can be accessed through [Dog API]().
+It can be accessed through [Dog API](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/).
 
 The Dog API is designed to allow data to be created/read/updated and deleted regarding a dog rescue/adoption service. It is essential that once the dogs have gone into a rescue their information is accurately and sustainably retained and accessible, and the API allows this information to be created, accessed and manipulated as an interface between a front end website and a database retaining the information.
 
-As these rescues are often run by charities and volunteers, using IT solutions to gain exposure to the public and retain information on the dogs is often under-utilised. The people using it often have a low level of technical knowledge. This means that they would definitely not be able to access the data straight from the data base and need a connection to a user-friendly website that is intuitive to use. The API must make it easy for the users to perform their activities.
+As these rescues are often run by charities and volunteers, using IT solutions to gain exposure to the public and retain information on the dogs is often under-utilised. The people using it often have a low level of technical knowledge. This means that they would definitely not be able to access the data straight from the data base and need a connection to a user-friendly website that is intuitive to use. The API must make it easy for the users to perform their activities by making it easy to manipulate the data.
 
 The intent of the overall project is two-fold, 
-1. to get the animals known to potential adopters
+1. to get the animals known to potential adopters (advertising their personalities on a feed/profile)
 2. retain information on the dogs for use in the rescue regarding their history and needs. 
 
-This means that it is essential that the information in the database is can be accessed and manipulated easily to achieve these goals, by all relevant parties with ease.
+This means that it is essential that the information in the database is can be accessed and manipulated to achieve these goals, by all relevant parties with ease.
 
-Most websites that are for rescues just have a photo a couple of details and a paragraph of information to give a potential adopter information on the dogs. To step up the advertising campaign to get dogs adopted, rather than being limited to these features, this site endeavours to show their personalities by getting the public involved in their timelines with posts/comments from walkers and the public. This means that as well as a profile for the dog, there is a requirement to store posts, comments etc from users as well as data regarding queries from potential adopters.
+Most websites that are for rescues just have a photo, a couple of details and a paragraph of information to give a potential adopter information on the dogs. To step up the advertising campaign to get dogs adopted, rather than being limited to these features, this site endeavours to show their personalities by getting the public involved in their timelines with posts/comments from walkers and the public. This means that as well as a profile for the dog, there is a requirement to store posts, comments etc from users as well as data regarding queries from potential adopters.
 
-The system will mean that the relevant information that the rescue requires day to day about the dog can be held in a profile(and add-ons regarding vaccination etc.), of which some parts are made public and the dog will also get a timeline, where walkers/volunteers/people involved with the dog can post pictures and stories to make the dog more appealing. This is particularly important for dogs that remain at the rescue for a significant amount of time as it raises their visibility and gets their personality/quirks known.
+The system will mean that the relevant information that the rescue requires day to day about the dog can be held in a profile(and add-ons), of which some parts are made public and the dog will also get a timeline, where walkers/volunteers/people involved with the dog can post pictures and stories to make the dog more appealing. This is particularly important for dogs that remain at the rescue for a significant amount of time as it raises their visibility and gets their personality/quirks known so suitable adopters can be found.
 
 ## UX design
 
@@ -51,18 +51,17 @@ There were several things that needed to be altered with the idea. So the diagra
 
 1. It was decided to drop the custom_user and use a user and user_profile. This would make it similar to recent experience. The avatar was unnecessary as the site is about the dogs not the people (this could always be added to the user_profile as a future improvement). The type of account - which was going to be admin, staff, adopted owner or user will only be necessary if the adopted owner functionality was going to be implemented. The admin site can be used to manually set superusers, staff etc options. 
 
-2. It was noticed that there was a queries page in the wireframes for the front end but no where to store the information that would be put into that form to make a query about the dogs which was essential functionality.
+2. It was noticed that there was a queries about adoption page in the wireframes for the front end but no where to store the information that would be put into that form to make a query about the dogs - which was essential functionality.
 
-3. As allowing the adopted owners to post in the success stories was decided to be a low priority feature adopter_profile was decided to be removed from the dog_profile table in future.
+3. As allowing the adopted owners to post in the success stories was decided to be a low priority feature adopter_profile was decided to be removed from the dog_profile table as it only might be relevant if that feature were implemented in the future.
 
 Therefore, the priorities were going to be that it was essential to do user_profile, dog_profile, posts, comments and request_form (user would be set up as part of registration functionality and not by part of this development).
 
 Time dependent would be then favourite and then emoji. With looking at allowing an adopter to post on their dogs timeline as a final functionality that would probably have to be a future development.
 
-Most of the posts app and comments app will be very similar to the walkthrough provided by Code Institute as part of this course of study [git hub for walkthrough](https://github.com/Code-Institute-Solutions/drf-api/tree/ed54af9450e64d71bc4ecf16af0c35d00829a106). I therefore credit those apps for this code is substantially based on the code institute course work. There are some slight changes. The user profile does not feature an image of the person (about the dogs not the people) as part of the user profile and the identification of the person posting or commenting on the posts is their first name not their username - so it has been adapted to allow for these changes. As the code provided does more or less exactly as required it is wasteful to redo coding that is already available and effective.
+Most of the posts app and comments app will be very similar to the walkthrough provided by Code Institute as part of this course of study [git hub for walkthrough](https://github.com/Code-Institute-Solutions/drf-api/tree/ed54af9450e64d71bc4ecf16af0c35d00829a106). I therefore those apps are to be credited for this code is substantially based on the code institute course work. There are some slight changes. The user profile does not feature an image of the person (the site is about the dogs not the people) as part of the user profile and the identification of the person posting or commenting on the posts is their first name not their username - so it has been adapted to allow for these changes. As the code provided does more or less exactly as required it is wasteful to redo coding that is already available and effective. Therefore, large parts of the code are manipulated versions of that code to meet the required functionality. 
 
-The favourite relationship was derived from the following app in the walkthrough [git hub for walkthrough](https://github.com/Code-Institute-Solutions/drf-api/tree/ed54af9450e64d71bc4ecf16af0c35d00829a106). User to dog profile link instead of user to user.
-
+The dog side of the site meant that an understanding of the code was required to adjust it from featuring the users to promoting the dogs - it was no longer user to user interactions. Therefore, quite often the user_profile and the dog_profile required interactions so data from different parts of the data base rather than just the user_profile section of the database needed accessing. In the features it will be explained how each feature is unique, and the changes from the code institute code that were required.
 
 #### Final implemented diagram
 
@@ -81,9 +80,15 @@ The favourite relationship was derived from the following app in the walkthrough
 
 ## Features
 
+### Change to initial dog profile model
+
+The original dog profile model had the vaccination information and the details of the dog all in one model. This was found to be extremely bulky and gave the issue of the vaccination information would not want to be on public display. Therefore, they were separated into one model that was entirely vaccination information and one that was the remaining dog profile.
+
 ### Automatic record creation for user profile and dog vaccine
 
 As for each user and each dog it was requirement that the user had a user profile and the dog had a vaccination record, user_profile record automatically creates when the auth app sets up a User and a dog_vaccine record automatically creates when dog_profile is created. Therefore generics.ListAPIView not generics.CreateListAPIView was used in the views as there should never be any reason to create these records. You would never want a user profile or dog vaccine record without the corresponding user or dog profile. These records are deleted by CASCADE so that there aren't orphan records either way.
+
+This should also mean that their id numbers in the record (primary key) are likely to be synchronised, which may prove useful for later features.
 
 These were created with code :
 
@@ -154,7 +159,7 @@ filter_backends = [
     ]
 ```
 
-Which fields to perform the tasks on were defined in ordering_fileds, search_fields and filterset_fields.
+Which fields to perform the tasks on were defined in ordering_fields, search_fields and filterset_fields. It is hoped that all relevant search/ordering/filters are available without including every single possible variant.
 
 ### Existing Features - How to...
 
@@ -218,7 +223,7 @@ This automatically creates a dog vaccine record
 
 #### Request adopt delete
 
-
+### Permission classes - restriction of use
 
 ### Potential Future Feature Developments 
 
@@ -280,14 +285,15 @@ pip3 freeze --local > requirements.txt
 and create a Procfile (with a capital P) containing:
 
 ```python
-*
+release: python manage.py makemigrations && python manage.py migrate
+ web: gunicorn dog_api.wsgi
 ```
 
 Ensure that the version that you want to deploy has been added, committed and pushed to GitHub (as Heroku will take it from the repository).
 
 1. [Heroku](https://www.heroku.com/) was used to deploy.
 2. Once logged onto the website, using the heroku logo we went to the dashboard.
-![lgog](document/logo.png)
+![logo](document/logo.png)
 3. From here we are able to create a new app either by clicking on the icon (which is what we did)
 
 ![icon](document/icon.png)
