@@ -238,6 +238,10 @@ This automatically creates a dog vaccine record
 
 3. logout fixed as per CI walkthrough in second to last text.
 
+cloudinary version
+default boolean set to true in back end and false in front end needed to be changed from false to true to false again to register as false. intermittentcy made it hard to identify.
+
+
 
 ## Technologies
 
