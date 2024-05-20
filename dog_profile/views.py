@@ -35,6 +35,7 @@ class DogProfileList(generics.ListAPIView):
         'home_dogs',
         'home_animals',
         'home_children',
+        'status',
     ]
     
 class DogProfileCreate(generics.CreateAPIView):
