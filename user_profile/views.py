@@ -17,7 +17,7 @@ class UserProfileList(generics.ListAPIView):
     when auth creates a User
     """
     serializer_class = UserProfileSerializer
-    # permission_classes = [IsStaffOrReadOnly]
+    permission_classes = [IsStaffOrReadOnly]
     queryset = UserProfile.objects.annotate(
         post_count =  Count('user_id__post', distinct=True),
         comment_count = Count('user_id__comment', distinct=True),

@@ -60,7 +60,7 @@ class DogProfileCreate(generics.CreateAPIView):
     #     )
 
 class DogProfileDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsSuperUser]
+    permission_classes = [IsSuperUserOrReadOnly]
     serializer_class =  DogProfileSerializer
     queryset = DogProfile.objects.all()
     

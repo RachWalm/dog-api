@@ -14,9 +14,9 @@ class PostList(generics.ListAPIView):
     and the relevant details from the posts
     """
     serializer_class = PostSerializer
-    # permission_classes = [
-    #     IsSuperUserOrReadOnly
-    # ]
+    permission_classes = [
+        IsSuperUserOrReadOnly
+    ]
     queryset = Post.objects.all().order_by('-created_at')
     filter_backends = [
         filters.OrderingFilter,
