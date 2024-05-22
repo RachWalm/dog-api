@@ -14,8 +14,8 @@ class FavouriteList(generics.ListCreateAPIView):
     """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Favourite.objects.annotate(
-        favourited_count = Count('dog_id__favourited', distinct=True),
-        person_count = Count('user_id__person', distinct=True),
+        favourited_count=Count('dog_id__favourited', distinct=True),
+        person_count=Count('user_id__person', distinct=True),
     ).order_by('-created_at')
     serializer_class = FavouriteSerializer
     filter_backends = [

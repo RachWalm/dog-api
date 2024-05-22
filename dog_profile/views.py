@@ -1,17 +1,17 @@
 from django.db.models import Count
-from rest_framework import generics, permissions, filters, status
-from rest_framework.response import Response
+from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.views import APIView
-from dog_api.permissions import IsOwnerOrReadOnly, IsSuperUser, IsSuperUserOrReadOnly, IsStaffOrReadOnly
+from dog_api.permissions import IsSuperUser
+from dog_api.permissions import IsSuperUserOrReadOnly, IsStaffOrReadOnly
 from .models import DogProfile
 from .serializers import DogProfileSerializer
 
+
 class DogProfileList(generics.ListAPIView):
-    serializer_class =  DogProfileSerializer
+    serializer_class = DogProfileSerializer
     permission_classes = [IsStaffOrReadOnly]
     queryset = DogProfile.objects.annotate(
-        fav_count = Count('favourited', distinct=True)
+        fav_count=Count('favourited', distinct=True)
     ).order_by('-created_at')
     serializer_class = DogProfileSerializer
     filter_backends = [
@@ -37,30 +37,17 @@ class DogProfileList(generics.ListAPIView):
         'home_children',
         'status',
     ]
-    
+
+
 class DogProfileCreate(generics.CreateAPIView):
     """Create dog profiles"""
-
     serializer_class = DogProfileSerializer
     permission_classes = [
         IsSuperUser
     ]
 
-    # def post(self, request):
-    #     serializer = DogProfileSerializer(
-    #         data=request.data, context={'request': request}
-    #     )
-    #     if serializer.is_valid():
-    #         serializer.save(user_id=request.user)
-    #         return Response(
-    #             serializer.data, status=status.HTTP_201_CREATED
-    #         )
-    #     return Response(
-    #         serializer.errors, status=status.HTTP_400_BAD_REQUEST
-    #     )
 
 class DogProfileDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsSuperUserOrReadOnly]
-    serializer_class =  DogProfileSerializer
+    serializer_class = DogProfileSerializer
     queryset = DogProfile.objects.all()
-    

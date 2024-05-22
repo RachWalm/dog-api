@@ -6,9 +6,13 @@
 
 - [PEP8Online.com](https://pep8ci.herokuapp.com/) was used to validate python coding
 
+The results of the testing gave one error regarding whitespace before ' without there being a ' on that line so couldn't fix. There was also a couple of times when defining a variable the line was too long, as this would involve finding all the occassions that the variable name appeared and shortening it the risk to the project getting broken was considered too high to action at this point.
+
+Here are the [results](/document/PEP8.pptx)
+
 ## Automated testing
 
-Some automated testing was performed in posts.testing.py
+Some automated testing was performed in posts.testing.py. It was adapted from the walkthrough to take account of the slightly different model.
 
 ## User stories
 

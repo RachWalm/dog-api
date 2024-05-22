@@ -1,14 +1,11 @@
 
 from django.db.models import Count
-from rest_framework import generics, filters, permissions
+from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
-from django.http import Http404
-from rest_framework import status
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from .models import UserProfile
 from .serializers import UserProfileSerializer
-from dog_api.permissions import IsOwnerOrReadOnly, IsSuperUser, IsSuperUserOrReadOnly, IsStaffOrReadOnly
+from dog_api.permissions import IsOwnerOrReadOnly, IsStaffOrReadOnly
+
 
 class UserProfileList(generics.ListAPIView):
     """
@@ -19,9 +16,9 @@ class UserProfileList(generics.ListAPIView):
     serializer_class = UserProfileSerializer
     permission_classes = [IsStaffOrReadOnly]
     queryset = UserProfile.objects.annotate(
-        post_count =  Count('user_id__post', distinct=True),
-        comment_count = Count('user_id__comment', distinct=True),
-        fav_count = Count('user_id__person', distinct=True),
+        post_count=Count('user_id__post', distinct=True),
+        comment_count=Count('user_id__comment', distinct=True),
+        fav_count=Count('user_id__person', distinct=True),
     ).order_by('-created_at')
     serializer_class = UserProfileSerializer
     filter_backends = [
@@ -36,7 +33,8 @@ class UserProfileList(generics.ListAPIView):
     filterset_fields = [
         'user_id__person__dog_id',
     ]
-    
+
+
 class UserProfileDetail(generics.RetrieveUpdateAPIView):
     """
     View to provide a single instance of a user profile from the
@@ -47,4 +45,3 @@ class UserProfileDetail(generics.RetrieveUpdateAPIView):
     serializer_class = UserProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = UserProfile.objects.all()
-    

@@ -4,9 +4,10 @@ from dog_api.permissions import IsSuperUser
 from .models import DogVaccine
 from .serializers import DogVaccineSerializer
 
+
 class DogVaccineList(generics.ListAPIView):
     permission_classes = [permissions.IsAdminUser]
-    serializer_class =  DogVaccineSerializer
+    serializer_class = DogVaccineSerializer
     queryset = DogVaccine.objects.all()
     filter_backends = [
         DjangoFilterBackend,
@@ -28,8 +29,8 @@ class DogVaccineList(generics.ListAPIView):
         'overdue',
     ]
 
+
 class DogVaccineDetail(generics.RetrieveUpdateAPIView):
     permission_classes = [IsSuperUser]
-    serializer_class =  DogVaccineSerializer
+    serializer_class = DogVaccineSerializer
     queryset = DogVaccine.objects.all()
-    

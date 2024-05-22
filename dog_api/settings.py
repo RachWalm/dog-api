@@ -17,7 +17,7 @@ import re
 
 if os.path.exists('env.py'):
     import env
-    
+
 CLOUDINARY_STORAGE = {
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
 }
@@ -77,9 +77,7 @@ if 'CLIENT_ORIGIN' in os.environ:
 
 CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.gitpod\.io$", ]
 
-
 CORS_ALLOW_CREDENTIALS = True
-
 
 # Application definition
 
@@ -156,16 +154,16 @@ WSGI_APPLICATION = 'dog_api.wsgi.application'
 #     }
 # }
 if 'DEV' in os.environ:
-     DATABASES = {
-         'default': {
-             'ENGINE': 'django.db.backends.sqlite3',
-             'NAME': BASE_DIR / 'db.sqlite3',
-         }
-     }
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 else:
-     DATABASES = {
-         'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-     }
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
 
 
 # Password validation

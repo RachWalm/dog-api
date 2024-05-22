@@ -7,8 +7,9 @@ class Post(models.Model):
     """
     Post model is linked to the User that created the post and has
     the dates so that it can be sorted by most recent. The title and content
-    will be written by the user. Image and content can be left blank as some posts
-    maybe story without an image or just an image. Title is required.
+    will be written by the user. Image and content can be left blank as
+    some posts maybe story without an image or just an image.
+    Title is required.
     """
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     dog_id = models.ForeignKey(DogProfile, on_delete=models.PROTECT)
@@ -25,4 +26,3 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.id} {self.title}'
-    
