@@ -22,7 +22,9 @@ class IsStaffOrReadOnly(permissions.BasePermission):
             if request.method in permissions.SAFE_METHODS:
                 return True
             try:
-                return (UserProfileSerializer.get_is_staff(request.user.userprofile, obj))
+                return (UserProfileSerializer.get_is_staff(
+                    request.user.userprofile, obj
+                    ))
             except Exception:
                 return {"message": "You cannot perform this action"}
 
@@ -35,7 +37,9 @@ class IsSuperUserOrReadOnly(permissions.BasePermission):
         else:
             if request.method in permissions.SAFE_METHODS:
                 return True
-            return (UserProfileSerializer.get_is_superuser(request.user.userprofile, obj))
+            return (UserProfileSerializer.get_is_superuser(
+                    request.user.userprofile, obj
+                    ))
 
 
 class IsSuperUser(permissions.BasePermission):

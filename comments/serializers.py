@@ -10,7 +10,9 @@ class CommentSerializer(serializers.ModelSerializer):
     """
     user_id = serializers.ReadOnlyField(source='user_id.username')
     is_owner = serializers.SerializerMethodField()
-    users_first_name = serializers.ReadOnlyField(source='user_id.userprofile.first_name')
+    users_first_name = serializers.ReadOnlyField(
+                        source='user_id.userprofile.first_name'
+                        )
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
 

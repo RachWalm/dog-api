@@ -10,12 +10,14 @@ class PostSerializer(serializers.ModelSerializer):
     """
     user_id = serializers.ReadOnlyField(source='user_id.username')
     is_owner = serializers.SerializerMethodField()
-    users_first_name = serializers.ReadOnlyField(source='user_id.userprofile.first_name')
+    users_first_name = serializers.ReadOnlyField(
+                        source='user_id.userprofile.first_name'
+                        )
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
 
     def validate_image(self, value):
-        if value.size > 1024 * 1024 *2 : 
+        if value.size > 1024 * 1024 * 2:
             raise serializers.ValidationError(
                 'Image size larger than 2MB!'
             )
