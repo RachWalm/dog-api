@@ -1,5 +1,5 @@
 from django.db.models import Count
-from rest_framework import generics, filters
+from rest_framework import generics, filters, permissions
 from django_filters.rest_framework import DjangoFilterBackend
 from dog_api.permissions import IsSuperUser
 from dog_api.permissions import IsSuperUserOrReadOnly, IsStaffOrReadOnly
@@ -48,6 +48,6 @@ class DogProfileCreate(generics.CreateAPIView):
 
 
 class DogProfileDetail(generics.RetrieveUpdateDestroyAPIView):
-    # permission_classes = [IsSuperUserOrReadOnly]
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = DogProfileSerializer
     queryset = DogProfile.objects.all()
