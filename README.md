@@ -112,7 +112,7 @@ All of the user stories and tasks can be found in the [issues](https://github.co
 
 ### Change to initial dog profile model
 
-The original dog profile model had the vaccination information and the details of the dog all in one model. This was found to be extremely bulky and gave the issue of the vaccination information would not want to be on public display. Therefore, they were separated into one model that was entirely vaccination information and one that was the remaining dog profile.
+The original dog profile model had the vaccination information and the details of the dog all in one model. This was found to be extremely bulky and gave the issue of the vaccination information would not want to be on public display. Therefore, they were separated into two, one model that was entirely vaccination information and one that was the remaining dog profile.
 
 ### Automatic record creation for user profile and dog vaccine
 
@@ -144,12 +144,12 @@ Date and time format are set by putting in settings :
 REST_FRAMEWORK = {
 
     'DATETIME_FORMAT': "%A %d %b %Y %H:%M:%S",
-    'DATE_FORMAT' : "%A %d %b %Y",
+    'DATE_FORMAT': "%Y-%m-%d",
 }
 ```
-this give day of the week, day of month number and month three letters and year. with the time in hours:minutes:seconds
+These formats were found to be the optimised ones for all the requirements for the front end.
 
-Posts and comments are overridden with humanize naturaltime so that it is read against how long it has been since it was posted.
+Posts and comments are overridden with humanize naturaltime so that it is read against how long it has been since it was posted/comment made.
 
 This required serializer methods :
 
@@ -171,6 +171,14 @@ Serializer readonlyfields were used for foreign key values and for values specif
 ### Permissions
 
 is_staff or is_superuser set in the admin panel and then can be used for permissions.py in the dog_api to allow the appropriate permission to the various bits of data.
+
+The permissions were written as the level that was required or read only in the name for all but IsSuperUser, which was so that SAFE_METHODS such as read could be performed but not manipulation of the data. Most of the data was supposed to be available to the everyone in a read-only format apart from the confidential vaccine information which was restricted to IsSuperUser for every action.
+
+This meant that manipulation of the data could be restricted to the original generator of the data, or a level of authorisation (staff or superuser).
+
+### URL's
+
+The urls are broken down into the individual urls for each app where a url.py is written within that section and the overall urls and included in the dog_api.urls as include.urls. This gives compartmentalisation.
 
 ### Listview searching/ordering/filtering
 
@@ -195,83 +203,417 @@ Which fields to perform the tasks on were defined in ordering_fields, search_fie
 
 #### Login
 
+This was done following the Code Institue Moments walkthrough [github](https://github.com/Code-Institute-Solutions/drf-api/tree/ed54af9450e64d71bc4ecf16af0c35d00829a106).
+
+On the deployed version the login can be performed using the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/dj-rest-auth/login/) where the email is not required.
+
+![login](./document/loginbackend.png)
+
 #### Logout
+
+From the Code institute Moments walkthrough there was a fix for the log out that is included in the dog_api.views for dj-rest-auth with the JWT tokens.
+
+#### Landing page
+
+A welcome message was also put in the dog_api.views so that it was clear that it had loaded the [API](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/).
 
 #### Create and change user access
 
-This has to be done in the admin panel if using the the API directly. A website will be able to create users by communicating with the installed auth django library. In the terminal in the IDE superusers can be created by 
+This has to be done in the admin panel if using the the API directly. A website will be able to create users by communicating with the installed auth django library. In the terminal in the IDE superusers can be created by using the code :
+
 
 ```python
 python manage.py createsuperuser
 ```
 
+
+Then filling out the prompts (email is not required).
+
+In the admin panel if you click on the Users link it will bring up a link just above all current users where you can add a user. The list of users also has a column for staff status, which is quickly visible as true or false. If you wish to change the staff/superuser status of a particular user - click their link and then in the permissions section add a tick next to staff status or superuser status depending on what level they require. Then click save button near the bottom.
+
+In this API additional access includes Staff can post, Superusers have access to the vaccine information.
+
 The User model is part of the auth. When this is created it automatically sets up a record for the user_profile see 'Automatic record creation for user profile and dog vaccine' section.
+
+#### User profile List
+
+This is readonly by anyone using the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/user_profile/).
+
+This provided the information : 
+
+            "id": , - or pk
+            "user_id": "", - or username
+            "created_at": "", - human readable - set at creation
+            "updated_at": "", - human readable - automatically updates
+            "first_name": "", - if they have filled out the form, can be blank
+            "last_name": "", - if they have filled out the form, can be blank
+            "email": "", - if they have filled out the form, can be blank
+            "is_owner": , - if this is the currently logged in person
+            "is_staff": , - True or false
+            "is_superuser":, - True or false
+            "fav_count": , - not currently used
+            "post_count": , - not currently used
+            "comment_count": - not currently used
+
+Individual records can be done via the /user_profile/:id where the id is the corresponding pk or id.
+
+This can be ordered by created at, updated at and how many dogs they have favourited - favourite not implemented. It can be filter by who has favourited a specific dog.
 
 #### Update user profile
 
+This can be done via the /user_profile/:id where the id is the corresponding pk or id.
+
+The owner when logged in they can update it in the fields:
+
+            "first_name": "", - if they have filled out the form, can be blank
+            "last_name": "", - if they have filled out the form, can be blank
+            "email": "", - if they have filled out the form, can be blank
+
 #### Posts creation
+
+This can be accessed AUTHORISATION via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/posts_create/)
+
+Information for user_id is taken from the person that is logged in, and the dog_id field is already populated but can be changed.
+
+Fields that can be populated:
+
+    "title": "",
+    "content": "",
+    "image": "",
+    "dog_id": 
 
 #### Posts viewing
 
+These can be accessed via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/posts/)
+
+This can be ordered by created at and updated at. Filtered by dog id and/or user id. The title and content can be searched by text input.
+
+Individual posts can be accessed via the /posts/:id where the id is the corresponding pk or id.
+
+Fields
+
+    "id": , - id or pk
+    "user_id": "", - username
+    "created_at": "",
+    "updated_at": "",
+    "title": "",
+    "content": "",
+    "image": "",
+    "is_owner": ,
+    "users_first_name": "",
+    "dog_id": 
+
 #### Posts update
+
+Posts can be accessed AUTHORISED via the /posts/:id where the id is the corresponding pk or id.
+
+Information for user_id is taken from the person that is logged in, and the dog_id field is already populated but can be changed.
+
+Fields that can be populated:
+
+    "title": "",
+    "content": "",
+    "image": "",
+    "dog_id": 
 
 #### Posts deletion
 
+This can be accessed by the AUTHORISED person who created it via the /posts/:id where the id is the corresponding pk or id.
+
 #### Comments creation
+
+These can be accessed via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/comments/)
+
+post id is already populated but can be changed.
+
+Fields :
+
+            "post_id":,
+            "comment_content": "",
 
 #### Comments viewing
 
+These can be accessed via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/comments/)
+
+This can be filtered by user id and post id, can be ordered by created at (which will be same as post id - chronological) and updated at. There is a text search of the comment content.
+
+Individual comments can be accessed via the /comments/:id where the id is the corresponding pk or id.
+
+            "id":,
+            "user_id": "",
+            "is_owner": ,
+            "users_first_name": "",
+            "post_id":,
+            "created_at": "",
+            "updated_at": "",
+            "comment_content": ""
+
 #### Comments update
+
+Individual comments can be updated AUTHORISATION via the /comments/:id where the id is the corresponding pk or id.
+
+only the comment content field can be updated.
 
 #### Comments deletion
 
+This can be accessed via AUTHORISATION the /comments/:id where the id is the corresponding pk or id.
+
 #### Dog profile creation
 
-This automatically creates a dog vaccine record
+This automatically creates a dog vaccine record.
+
+All the dates default to null which needs to be considered when saving forms. Gender, size and status default to 0, and have integers saved in the database that correspond to options. There is a default image from cloudinary to keep things consistent. At rescue, home cats, home dogs, home animals and home children automatically default to false but can be changed.
+
+Fields :
+
+        "id": ,
+        "dog_name": "",
+        "created_at": "",
+        "updated_at": "",
+        "received_date": null,
+        "rehomed_date": null,
+        "returned_date": null,
+        "dog_age": ,
+        "dog_breed": "",
+        "dog_gender": 0,
+        "dog_size": 0,
+        "dog_image": "https://res.cloudinary.com/dykxglqm8/image/upload/v1/media/../dog-image-na_zmmfot",
+        "at_rescue": false,
+        "status": 0,
+        "general": "",
+        "home_cats": false,
+        "home_dogs": false,
+        "home_animals": false,
+        "home_children": false,
 
 #### Dog profile viewing
 
+This can be accessed via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/dog_profile/)
+
+It can be ordered by number of times favourited, updated at and created at. A text search of dog name and breed is available. Filters can be applied to dog gender, size, status and what it can be homed with.
+
+Individual dog profiles can be access via the /dog_profile/:id where the id is the corresponding pk or id.
+
+Fields (defaults included):
+
+            "id": ,
+            "dog_name": "",
+            "created_at": "",
+            "updated_at": "",
+            "received_date": ,
+            "rehomed_date": ,
+            "returned_date": ,
+            "dog_age": ,
+            "dog_breed": "",
+            "dog_gender": ,
+            "dog_size": ,
+            "dog_image": "",
+            "at_rescue": ,
+            "status": ,
+            "general": "",
+            "home_cats": ,
+            "home_dogs": ,
+            "home_animals": ,
+            "home_children": ,
+            "fav_count": 
+
 #### Dog profile update
+
+This can be accessed via the /dog_profile/:id where the id is the corresponding pk or id.
+
+Fields that can be updated :
+
+"id": ,
+            "dog_name": "",
+            "received_date": ,
+            "rehomed_date": ,
+            "returned_date": ,
+            "dog_age": ,
+            "dog_breed": "",
+            "dog_gender": ,
+            "dog_size": ,
+            "dog_image": "",
+            "at_rescue": ,
+            "status": ,
+            "general": "",
+            "home_cats": ,
+            "home_dogs": ,
+            "home_animals": ,
+            "home_children": ,
 
 #### Dog profile deletion
 
+This can be accessed via the /dog_profile/:id where the id is the corresponding pk or id.
+
+#### Dog vaccine creation or deletion 
+
+This is performed only automatically by the API when a dog profile is created or deleted. See automatic creation section.
+
 #### Dog vaccine update
+
+This can be accessed AUTHORISATION via the /dog_vaccine/:id where the id is the corresponding pk or id.
+
+All fields except id and dog_name can be update. They all start as null, which needs to be taken into consideration when saving from forms. Overdue defaults to true, the intention of this would be that the record would come up until it had been checked on a list of overdues were that a feature that was implemented. If it was appropriate this could be changed to false when the feature is implemented if optimised other features.
+
+dog name and id cannot be updated as they are linked to the dog profile.
+
+Fields that can be updated:
+
+            "overdue": ,
+            "vaccine_canine_parvovirus": null,
+            "vaccine_canine_hepatitis": null,
+            "vaccine_distemper": null,
+            "vaccine_leptospirosis": null,
+            "vaccine_kennelcough": null,
+            "vaccine_rabies": null,
+            "vaccine_puppy_first": null,
+            "vaccine_puppy_second": null,
+            "vaccine_sixmonthboost": null,
+            "vaccine_twelvemonthboost": null,
 
 #### Dog vaccine viewing
 
+This can be accessed AUTHORISATION via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/dog_vaccine/)
+
+Fields :
+            "id": ,
+            "overdue": ,
+            "vaccine_canine_parvovirus": null,
+            "vaccine_canine_hepatitis": null,
+            "vaccine_distemper": null,
+            "vaccine_leptospirosis": null,
+            "vaccine_kennelcough": null,
+            "vaccine_rabies": null,
+            "vaccine_puppy_first": null,
+            "vaccine_puppy_second": null,
+            "vaccine_sixmonthboost": null,
+            "vaccine_twelvemonthboost": null,
+            "dog_name": ""
+
+It can be filtered by overdue and ordered by each of the vaccines.
+
+Individual records can be accessed AUTHORISATION via the /dog_vaccine/:id where the id is the corresponding pk or id.
+
 #### Favourite connection creation
+
+This can be accessed via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/favourite/)
+
+The only option that can be filled out is dog id as it is a connection between a user and dog. The user is automatically taken from the person logged in and they choose which dog to favourite. They can favourite multiple dogs but each record is only for one dog.
 
 #### Favourite connection deletion
 
+This can be accessed via the /favourite/:id where the id is the corresponding pk or id.
+
 #### Favourite connection viewing
+
+This can be accessed via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/favourite/)
+
+They can be ordered by dog name, user id, number of dogs favourited by the user, number of times a dog has been favourited, created at and updated at. It can be filtered by dog id and user id.
+
+The individual records can be accessed via /favourite/:id where the id is the corresponding pk or id.
+
+Fields :
+
+    "id": ,
+    "user_id": "",
+    "created_at": "",
+    "dog_id": ,
+    "dog_name": ""
 
 #### Request adopt creation
 
+This can be accessed AUTHORISEDvia the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/request_adopt_create/)
+
+Fields :
+
+            "dog_id": ,
+            "contact_permission": ,
+            "home_cats": ,
+            "home_dogs": ,
+            "home_animals": ,
+            "home_children": ,
+            "experience": "",
+            "query": ""
+
+dog id is prepopulated from a list. All boolean values are defaulted to false.
+
 #### Request adopt update
+
+This can be accessed AUTHORISEDvia the /request_adopt/:id where the id is the corresponding pk or id.
+
+Fields :
+
+            "dog_id": ,
+            "contact_permission": ,
+            "home_cats": ,
+            "home_dogs": ,
+            "home_animals": ,
+            "home_children": ,
+            "experience": "",
+            "query": ""
 
 #### Request adopt viewing
 
+This can be accessed with correct AUTHORISATION via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/request_adopt/)
+
+Fields :
+
+            "id": ,
+            "user_id": ,
+            "dog_id": ,
+            "created_at": "",
+            "updated_at": "",
+            "contact_permission": ,
+            "home_cats": ,
+            "home_dogs": ,
+            "home_animals": ,
+            "home_children": ,
+            "experience": "",
+            "query": ""
+
+This can be filtered by dog id and/or user id. It can also be sorted by updated at and created at.
+
+Individual requests can be accessed AUTHORISEDvia the /request_adopt/:id where the id is the corresponding pk or id.
+
 #### Request adopt delete
+
+This can be accessed AUTHORISEDvia the /request_adopt/:id where the id is the corresponding pk or id.
 
 ### Permission classes - restriction of use
 
 ### Potential Future Feature Developments 
 
-1. Adoption process monitoring, documents approved, home approved, dog ready to go,
-2. Adopted owner posting on the timeline
+1. Adoption process monitoring - documents approved, home approved, dog ready to go, expected pick up date, special requirements etc areas so that several people can pick up at any stage of an adoption.
+2. Adopted owner posting on the timeline to provide a success stories section.
+3. Automated vaccine monitoring - recognises which dogs are within the rescue system still, then adds the appropriate timeperiod between each type of vaccination to pop up warnings of when vaccinations are becoming due so that they can be booked into the vets. Changes the overdue status at time it becomes overdue rather than being manual.
+4. Emoji app where there are 5 or 6 emojis that people can click on to assign to a post or comment.
 
 ## Bugs
 
-1. every update on a post was a new post. but it wasn't it was just that the form was retaining the old information so it looked like you were updating but the action said POST not put and it only showed the post you had just created but was actually the page url was posts not post/id so it was confusing.
+All found bugs have been rectified.
 
-2. for posts I wanted everyone to be able to read, only staff or above to create. This required making a separate url so that I could give different permissions to read and to create.
-
-3. logout fixed as per CI walkthrough in second to last text.
-
-cloudinary version
-default boolean set to true in back end and false in front end needed to be changed from false to true to false again to register as false. intermittentcy made it hard to identify.
+1. Most of the problems were with permissions and wanting different permissions for different activities for posts I wanted everyone to be able to read, only staff or above to create. This required making a separate url so that I could give different permissions to read and to create.
 
 
+3. There were multiple issues with the images not saving, or an image needing to be changed everytime any changes were cloudinary version issues. Added default image to help with save issue so there was always something there.
+
+4. default boolean set to true in back end and false in front end needed to be changed from false to true to false again to register as false. intermittentcy made it hard to identify.
+
+dog deleted when deleting a post
+
+change cloudinary to 1.36.0 in requirements.txt
+
+Add perform create in posts
+
+vaccine removed from dog profile
+
+CORS add samesite as well as cross site
+
+CORS didnt work as forgot to put it in middleware
+
+switch to generics rather than APIview to make it save
+
+fixed logout as per CI walkthrough
 
 ## Technologies
 
@@ -474,7 +816,7 @@ See [Testing](TESTING.md)
 
 My Mentor - Juliia Konn has been extremely enthusiastic and provided encouragement and a great deal of support.
 
-My family - Pat Walmsley and Sarah Walmsley have tested the site on their own devices and given very useful feedback.
+My mother - Pat Walmsley for being an extra pair of eyes looking over things - even if she had no idea what any of it meant, proof reading was appreciated.
 
 My Partner - Ian Harris has been extremely supportive while I have been working on this project.
 
