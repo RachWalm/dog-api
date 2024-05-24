@@ -4,13 +4,13 @@
 
 Welcome to [Dog API](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/).
 
-![title]()
+![title](./document/titlebackend.png)
 
 It can be accessed through [Dog API](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/).
 
 The Dog API is designed to allow data to be created/read/updated and deleted regarding a dog rescue/adoption service. It is essential that once the dogs have gone into a rescue their information is accurately and sustainably retained and accessible, and the API allows this information to be created, accessed and manipulated as an interface between a front end website and a database retaining the information.
 
-As these rescues are often run by charities and volunteers, using IT solutions to gain exposure to the public and retain information on the dogs is often under-utilised. The people using it often have a low level of technical knowledge. This means that they would definitely not be able to access the data straight from the data base and need a connection to a user-friendly website that is intuitive to use. The API must make it easy for the users to perform their activities by making it easy to manipulate the data.
+As these rescues are often run by charities and volunteers, using IT solutions to gain exposure to the public and retain information on the dogs is often under-utilised. The people using it often have a low level of technical knowledge. This means that they would definitely not be able to access the data straight from the data base and need a connection to a user-friendly website that is intuitive to use. The API must make it easy for the users to perform their activities by making it easy to manipulate the data. Also advertising the opportunity to adopt the dogs needs to be user friendly and encourage people to look into adopting them, not difficult to access information, so this need to bridge the gap between the use of the site and it's use of the data base is critical.
 
 The intent of the overall project is two-fold, 
 1. to get the animals known to potential adopters (advertising their personalities on a feed/profile)
@@ -31,9 +31,9 @@ The user of the API is intended to be a web based site that provides all require
 3. Staff User
 4. Superuser
 
-Staff and superuser permissions will set in the admin panel.
+Staff and superuser permissions will set in the admin panel and have greater access. Access increase as the number increases.
 
-The data will be privately owned by the dog rescue and as such will need to be restricted to those with appropriate approvals, some read-only data will be available to the public, but to perform activities on the data will require relevant registration/login/authorisation(minimum user level).
+The data will be privately owned by the dog rescue and as such will need to be restricted to those with appropriate approvals, some read-only data will be available to the public, but to perform activities on the data will require relevant registration/login/authorisation(minimum user level for making changes - Authenticated User).
 
 All of this data needs to be manipulated by the API in a way that is logical and can be interpreted to produce the features on a website with ease by the website developer.
 
@@ -49,19 +49,19 @@ There were several things that needed to be altered with the idea. So the diagra
 
 ![discussed diagram](/document/discussion-ERD.png)
 
-1. It was decided to drop the custom_user and use a user and user_profile. This would make it similar to recent experience. The avatar was unnecessary as the site is about the dogs not the people (this could always be added to the user_profile as a future improvement). The type of account - which was going to be admin, staff, adopted owner or user will only be necessary if the adopted owner functionality was going to be implemented. The admin site can be used to manually set superusers, staff etc options. 
+1. It was decided to drop the custom_user and use a user and user_profile. This would make it similar to recent experience fo the developer and more efficient. The avatar was unnecessary as the site is about the dogs not the people (this could always be added to the user_profile as a future improvement). The type of account - which was going to be admin, staff, adopted owner or user will only be necessary if the adopted owner functionality was going to be implemented. The admin site can be used to manually set superusers, staff etc options. So this custom user functionality was not required at this stage.
 
-2. It was noticed that there was a queries about adoption page in the wireframes for the front end but no where to store the information that would be put into that form to make a query about the dogs - which was essential functionality.
+2. It was noticed that there was a queries about adoption page in the wireframes for the front end but no where to store the information that would be put into that form to make a query about the dogs - which was essential functionality. So this was added to the relationship diagram
 
-3. As allowing the adopted owners to post in the success stories was decided to be a low priority feature adopter_profile was decided to be removed from the dog_profile table as it only might be relevant if that feature were implemented in the future.
+3. As allowing the adopted owners to post in the success stories section was decided to be a low priority feature adopter_profile was decided to be removed from the dog_profile table as it only might be relevant if that feature were implemented in the future.
 
 Therefore, the priorities were going to be that it was essential to do user_profile, dog_profile, posts, comments and request_form (user would be set up as part of registration functionality and not by part of this development).
 
-Time dependent would be then favourite and then emoji. With looking at allowing an adopter to post on their dogs timeline as a final functionality that would probably have to be a future development.
+Time dependent would be then favourite and then emoji. With looking at allowing an adopter to post on their dogs timeline as a final functionality that would probably have to be a future development. During development, it was decided to split out the vaccination data from the dog profile so these became separate during development.
 
-Most of the posts app and comments app will be very similar to the walkthrough provided by Code Institute as part of this course of study [git hub for walkthrough](https://github.com/Code-Institute-Solutions/drf-api/tree/ed54af9450e64d71bc4ecf16af0c35d00829a106). I therefore those apps are to be credited for this code is substantially based on the code institute course work. There are some slight changes. The user profile does not feature an image of the person (the site is about the dogs not the people) as part of the user profile and the identification of the person posting or commenting on the posts is their first name not their username - so it has been adapted to allow for these changes. As the code provided does more or less exactly as required it is wasteful to redo coding that is already available and effective. Therefore, large parts of the code are manipulated versions of that code to meet the required functionality. 
+Most of the posts app and comments app will be very similar to the walkthrough provided by Code Institute as part of this course of study [git hub for walkthrough](https://github.com/Code-Institute-Solutions/drf-api/tree/ed54af9450e64d71bc4ecf16af0c35d00829a106). Therefore those apps are to be credited as substantially based on the code institute course work. There are some slight changes. The user profile does not feature an image of the person (the site is about the dogs not the people) as part of the user profile and the identification of the person posting or commenting on the posts is their first name not their username - so it has been adapted to allow for these changes. As the code provided does more or less exactly as required it is wasteful to redo coding that is already available and effective. Therefore, large parts of the code are manipulated versions of that code to meet the required functionality. 
 
-The dog side of the site meant that an understanding of the code was required to adjust it from featuring the users to promoting the dogs - it was no longer user to user interactions. Therefore, quite often the user_profile and the dog_profile required interactions so data from different parts of the data base rather than just the user_profile section of the database needed accessing. In the features it will be explained how each feature is unique, and the changes from the code institute code that were required.
+The dog side of the site was novel and meant that an understanding of the code was required to adjust it from featuring the user focus to promoting the dogs - it was no longer user to user interactions. Therefore, quite often the user_profile and the dog_profile required interactions so data from different models in the database rather than just the user_profile section of the database needed accessing, which often complicated the code. In the features it will be explained how each feature is unique, and the changes from the code institute code that were required.
 
 #### Final implemented diagram
 
@@ -70,13 +70,43 @@ The dog side of the site meant that an understanding of the code was required to
 
 ## Epics / User Stories / Tasks
 
+The project board for this API was set up in the repository for the API, but the Epics, User stories and Tasks were included for both the API and the front end as the two required so much interaction. To see the Project board for this - [Projectboard](https://github.com/users/RachWalm/projects/4)
 
 ### Epics
 
+The backend Epics were :
+
+[#59](https://github.com/RachWalm/dog-api/issues/59) - Epic : time date filters - backend
+
+[#47](https://github.com/RachWalm/dog-api/issues/47) - Epic : Dog profile app - Backend
+
+[#44](https://github.com/RachWalm/dog-api/issues/44) - Epic (acceptance criteria as userstories) : API sign in and out - Backend
+
+[#23](https://github.com/RachWalm/dog-api/issues/23) - Epic : Request form app - backend
+
+[#22](https://github.com/RachWalm/dog-api/issues/22) - Epic : emoji app - backend
+
+[#21](https://github.com/RachWalm/dog-api/issues/21) - Epic : Favourite app - backend
+
+[#20](https://github.com/RachWalm/dog-api/issues/20) - Epic : comments app - backend
+
+[#19](https://github.com/RachWalm/dog-api/issues/19) - Epic : posts app - backend
+
+[#18](https://github.com/RachWalm/dog-api/issues/18) - Epic : user profile app - backend
+
+[#17](https://github.com/RachWalm/dog-api/issues/10) - Epic : initial deploy - Backend 
+
+[#4](https://github.com/RachWalm/dog-api/issues/4) - Epic : TESTING backend
+
+[#3](https://github.com/RachWalm/dog-api/issues/3) - Epic : README - Backend 
+
+[#1](https://github.com/RachWalm/dog-api/issues/1) - Epic : Plan and design both front end and backend features and timeline
+
+In the intial stages these were put into a timeline discussed with my mentor with the backend to be in the main complete by the end of iteration 3 so that the front end could be making use of it from that point forward. Some Epics were prioritsed as low (could have) and at the end of the project some were turned to won't haves due to time constraints.
 
 ### User stories and tasks
 
- [issues](). 
+All of the user stories and tasks can be found in the [issues](https://github.com/RachWalm/dog-api/issues). Most tasks were assigned within Epics which were broken down to user stories then the tasks from these put within the epics, or orphan tasks got issues of their own including bugs. I will not list out these issues here as the User stories are in the Testing section and tasks can be seen on the [project board](https://github.com/users/RachWalm/projects/4). User stories were given their own issues so as to be linked to testing.
 
 ## Features
 
@@ -251,6 +281,9 @@ default boolean set to true in back end and false in front end needed to be chan
 
 ### Frameworks and libraries
 - [Django](https://www.djangoproject.com/) Framework based on python.
+- [Django Rest](https://www.django-rest-framework.org/) Framework including REST functionality
+- [Django Bootstrap](https://django-bootstrap-v5.readthedocs.io/en/latest/) allowed simple styling of the pages.
+- [pillow](https://pillow.readthedocs.io/en/stable/) for python imaging to allow images.
 
 ### Databases
 
@@ -267,9 +300,14 @@ default boolean set to true in back end and false in front end needed to be chan
 - [gunicorn](https://gunicorn.org/) as a Python WSGI HTTP Server.
 - [dj_database_url](https://pypi.org/project/dj-database-url/) to work with Django.
 - [pyscopg2](https://peps.python.org/pep-0249/) for python database access.
-- [Django-allauth](https://docs.allauth.org/en/latest/) for authentication and signup/in/out pages.
 - [Elephantsql](https://www.elephantsql.com/) to host the postgreSQL database for deployment.
+- [djangorestauth](https://django-rest-auth.readthedocs.io/en/latest/) for authentication as is complements django rest framework
 - [DrawSQL](https://drawsql.app/) for relationship diagram drawing.
+- [Cloudinary](https://cloudinary.com/) to host all the image that would be added by users (non-static).
+- [JWT tokens](https://jwt-auth.readthedocs.io/en/develop/) for access and refresh tokens
+- [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) to allows HTTP sharing securely across domains.
+- [django-filter](https://django-filter.readthedocs.io/en/stable/) to set up the filtersets.
+
 
 ### Web resources
 
@@ -350,6 +388,8 @@ Cloudinary
 ```pip install Django-cloudinary-storage```
 
 Pillow
+
+
 ```pip install Pillow```
 
 Django 
@@ -357,17 +397,20 @@ Django
 ```pip3 install 'django<4'```
 
 Django-rest framework
+
 ```pip install djangorestframework```
 
 dj database url and psycopg2
 
 ```pip3 install dj_database_url==0.5.0 psycopg2```
 
-bootstrap
+
+django-bootstrap
 
 ```pip3 install django-bootstrap5```
 
 django filters
+
 ```pip install django-filter```
 
 dj-rest-auth
@@ -381,10 +424,6 @@ for registration
 JWT tokens
 
 ```pip install djangorestframework-simplejwt```
-
-allauth
-
-```pip3 install django-allauth```
 
 gunicorn and CORS
 
@@ -402,7 +441,7 @@ In the IDE terminal:
 2. clicked local
 3. choose HTTPS
 4. link copied
-5. went to terminal of the IDE and input the following :git clone https://github.com/RachWalm/*.git
+5. went to terminal of the IDE and input the following :git clone https://github.com/RachWalm/dog-api.git
 
 The project was cloned.
 
