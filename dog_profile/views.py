@@ -1,7 +1,7 @@
 from django.db.models import Count
 from rest_framework import generics, filters, permissions
 from django_filters.rest_framework import DjangoFilterBackend
-from dog_api.permissions import IsSuperUser, IsStaffOrReadOnly
+from dog_api.permissions import IsStaffOrReadOnly
 from .models import DogProfile
 from .serializers import DogProfileSerializer
 
