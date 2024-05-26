@@ -176,7 +176,7 @@ Serializer readonlyfields were used for foreign key values and for values specif
 
 is_staff or is_superuser set in the admin panel and then can be used for permissions.py in the dog_api to allow the appropriate permission to the various bits of data.
 
-The permissions were written as the level that was required or read only in the name for all except IsSuperUser, which was so that SAFE_METHODS such as read could be performed but anauthorised manipulation of the data could not. Most of the data was intended to be available to all users in a read-only format apart from the confidential vaccine information which was restricted to IsSuperUser for every action.
+The permissions were written as the level that was required or read only in the name for all except IsSuperUser, which was so that SAFE_METHODS such as read could be performed but an unauthorised manipulation of the data could not. Most of the data was intended to be available to all users in a read-only format apart from the confidential vaccine information which was restricted to IsSuperUser for every action.
 
 This meant that manipulation of the data could be restricted to the original generator of the data, or an appropriate level of authorisation (staff or superuser).
 
@@ -275,7 +275,7 @@ The owner when logged in they can update it in the fields:
 
 #### Posts creation
 
-This can be accessed AUTHORISATION via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/posts_create/)
+This can be accessed via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/posts_create/)
 
 Information for user_id is taken from the person that is logged in, and the dog_id field is already populated but can be changed.
 
@@ -309,7 +309,7 @@ Fields
 
 #### Posts update
 
-Posts can be accessed AUTHORISED via the /posts/:id where the id is the corresponding pk or id.
+Posts can be accessed via the /posts/:id where the id is the corresponding pk or id.
 
 Information for user_id is taken from the person that is logged in, and the dog_id field is already populated but can be changed.
 
@@ -322,7 +322,7 @@ Fields that can be populated:
 
 #### Posts deletion
 
-This can be accessed by the AUTHORISED person who created it via the /posts/:id where the id is the corresponding pk or id.
+This can be accessed by the person who created it via the /posts/:id where the id is the corresponding pk or id.
 
 #### Comments creation
 
@@ -354,13 +354,13 @@ Individual comments can be accessed via the /comments/:id where the id is the co
 
 #### Comments update
 
-Individual comments can be updated AUTHORISATION via the /comments/:id where the id is the corresponding pk or id.
+Individual comments can be updated via the /comments/:id where the id is the corresponding pk or id.
 
 Only the comment content field can be updated.
 
 #### Comments deletion
 
-This can be accessed via AUTHORISATION the /comments/:id where the id is the corresponding pk or id.
+This can be accessed via the /comments/:id where the id is the corresponding pk or id.
 
 #### Dog profile creation
 
@@ -455,7 +455,7 @@ This is performed automatically and only by the API when a dog profile is create
 
 #### Dog vaccine update
 
-This can be accessed AUTHORISATION via the /dog_vaccine/:id where the id is the corresponding pk or id.
+This can be accessed via the /dog_vaccine/:id where the id is the corresponding pk or id.
 
 All fields except id and dog_name can be updated. They all start as null, which needs to be taken into consideration when saving from forms. Overdue defaults to true, the intention of this would be that the record would come up until it had been checked on a list of overdues were that a feature that was implemented. If it was appropriate this could be changed to false when the feature is implemented if optimised other features.
 
@@ -477,7 +477,7 @@ Fields that can be updated:
 
 #### Dog vaccine viewing
 
-This can be accessed AUTHORISATION via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/dog_vaccine/)
+This can be accessed via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/dog_vaccine/)
 
 Fields :
             "id": ,
@@ -496,7 +496,7 @@ Fields :
 
 It can be filtered by overdue and ordered by each of the vaccines.
 
-Individual records can be accessed AUTHORISATION via the /dog_vaccine/:id where the id is the corresponding pk or id.
+Individual records can be accessed via the /dog_vaccine/:id where the id is the corresponding pk or id.
 
 #### Favourite connection creation
 
@@ -526,7 +526,7 @@ Fields :
 
 #### Request adopt creation
 
-This can be accessed AUTHORISEDvia the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/request_adopt_create/)
+This can be accessed via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/request_adopt_create/)
 
 Fields :
 
@@ -543,7 +543,7 @@ dog id is prepopulated from a list. All Boolean values are defaulted to false.
 
 #### Request adopt update
 
-This can be accessed AUTHORISEDvia the /request_adopt/:id where the id is the corresponding pk or id.
+This can be accessed via the /request_adopt/:id where the id is the corresponding pk or id.
 
 Fields :
 
@@ -558,7 +558,7 @@ Fields :
 
 #### Request adopt viewing
 
-This can be accessed with correct AUTHORISATION via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/request_adopt/)
+This can be accessed with correct via the [url](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/request_adopt/)
 
 Fields :
 
@@ -577,11 +577,42 @@ Fields :
 
 This can be filtered by dog id and/or user id. It can also be sorted by updated at and created at.
 
-Individual requests can be accessed AUTHORISEDvia the /request_adopt/:id where the id is the corresponding pk or id.
+Individual requests can be accessed via the /request_adopt/:id where the id is the corresponding pk or id.
 
 #### Request adopt delete
 
-This can be accessed AUTHORISEDvia the /request_adopt/:id where the id is the corresponding pk or id.
+This can be accessed via the /request_adopt/:id where the id is the corresponding pk or id.
+
+#### Permissions
+
+Permission classes were set for various views so that for each action the correct level of authorisation was required. There are areas such as dog vaccine that I wanted to not even be read by members of the public so are set to IsSuperUser. Others it is allowed to read the data but not manipulate it so the functions were written as xOrReadOnly. This used SAFE_METHODS for the read then the restrictions were placed for manipulation actions
+
+```js
+class IsSuperUserOrReadOnly(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.user.is_anonymous:
+            if request.method in permissions.SAFE_METHODS:
+                return True
+        else:
+            if request.method in permissions.SAFE_METHODS:
+                return True
+            return (UserProfileSerializer.get_is_superuser(
+                    request.user.userprofile, obj
+                    ))
+```
+
+To have no access for the public 
+
+```js
+class IsSuperUser(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.user.is_superuser is False:
+            return False
+        elif request.user.is_superuser:
+            return True
+```
+
+From the userProfileSerializer the variable for whether the user is staff of superuser was recorded as true or false so that could be used to determine status.
 
 ### Potential Future Feature Developments 
 

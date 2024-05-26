@@ -12,7 +12,7 @@ Here are the [results](/document/PEP8.pptx)
 
 ## Automated testing
 
-Some automated testing was performed in posts.testing.py. It was adapted from the walkthrough to take account of the slightly different model.
+Some automated testing was performed in posts.testing.py. It was adapted from the walkthrough to take account of the slightly different model. These tests pass when run locally with an appropriate database.
 
 ## User stories
 
