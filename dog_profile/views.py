@@ -42,7 +42,7 @@ class DogProfileCreate(generics.CreateAPIView):
     """Create dog profiles"""
     serializer_class = DogProfileSerializer
     permission_classes = [
-        IsSuperUser
+        IsStaffOrReadOnly
     ]
 
 

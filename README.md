@@ -233,7 +233,7 @@ python manage.py createsuperuser
 
 Then filling out the prompts (email is not required).
 
-In the admin panel if you click on the Users link it will bring up a link just above all current users where you can add a user. The list of users also has a column for staff status, which is quickly visible as true or false. If you wish to change the staff/superuser status of a particular user - click their link and then in the permissions section add a tick next to staff status or superuser status as required. Then click save button near the bottom.
+In the [admin panel](https://dog-rescue-dd90e2b7e4a8.herokuapp.com/admin/) if a super user clicks on the Users link it will bring up a link just above all current users where you can add a user. The list of users also has a column for staff status, which is quickly visible as true or false. If you wish to change the staff/superuser status of a particular user - click their link and then in the permissions section add a tick next to staff status or superuser status as required. Then click save button near the bottom.
 
 In this API additional access includes Staff can post, Superusers have access to the vaccine information.
 
