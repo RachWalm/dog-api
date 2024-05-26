@@ -16,6 +16,9 @@ Some automated testing was performed in posts.testing.py. It was adapted from th
 
 ## User stories
 
+These userstories are taken from the ones written on the project board. They don't have a specific explanation of what this enables the website to do. This is because generating/modifying/listing/deleting the data with the appropriate permissions are the aims. What the website decides to do with this doesn't need to be defined at the backend. The actions in themselves are the aim.
+
+
 ### user_profile app [#43](https://github.com/users/RachWalm/projects/4/views/1?pane=issue&itemId=59544320)
 
 As a user my profile is created when I sign up for an account

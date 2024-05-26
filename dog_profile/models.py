@@ -42,7 +42,7 @@ class DogProfile(models.Model):
     received_date = models.DateField(blank=True, null=True)
     rehomed_date = models.DateField(blank=True, null=True)
     returned_date = models.DateField(blank=True, null=True)
-    dog_age = models.IntegerField(blank=True)
+    dog_age = models.IntegerField(blank=True, null=True)
     dog_breed = models.CharField(max_length=255)
     dog_gender = models.IntegerField(choices=GenderChoices.GENDER_CHOICES,
                                      default=0)

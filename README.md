@@ -112,6 +112,8 @@ In the initial stages these were put into a timeline discussed with my mentor. I
 
 All of the user stories and tasks can be found in the [issues](https://github.com/RachWalm/dog-api/issues). Most tasks were assigned within Epics which were broken down to user stories then the tasks from these put within the epics, or orphan tasks got issues of their own including bugs. I will not list out these issues here as the User stories are in the Testing section and tasks can be seen on the [project board](https://github.com/users/RachWalm/projects/4). User stories were given their own issues so as to be linked to testing.
 
+The user stories are written out in the TESTING.md so that they could be tested against, therefore I will not repeat them here.
+
 ## Features
 
 ### Change to initial dog profile model
