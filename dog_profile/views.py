@@ -41,9 +41,9 @@ class DogProfileList(generics.ListAPIView):
 class DogProfileCreate(generics.CreateAPIView):
     """Create dog profiles"""
     serializer_class = DogProfileSerializer
-    permission_classes = [
-        IsStaffOrReadOnly
-    ]
+    # permission_classes = [
+    #     IsStaffOrReadOnly
+    # ]
 
 
 class DogProfileDetail(generics.RetrieveUpdateDestroyAPIView):
