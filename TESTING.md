@@ -1,5 +1,13 @@
 # Dog API testing
 
+The testing was not completed as due to a bug the model for dog profile needed to be updated. The dog_age was set to blank but not Null, which meant that the form validation didn't show that age was required, so if left empty it just didn't save. When this change was migrated something happened that got the error 
+
+```django.db.migrations.exceptions.InconsistentMigrationHistory: Migration posts.0003_alter_post_dog_id is applied before its dependency dog_profile.0003_alter_dogprofile_dog_age on database 'default'.```
+
+This meant that it wouldn't deploy - as this was during testing and the developer couldn't fix it alone, and as a bank holiday student tutors were closed till morning. This put a halt to the testing.
+
+Therefore, userstories testing has not been completed. The list of tests is shown below without results as it has not been completed.
+
 ## Validation
 
 ### PEP8 linter
