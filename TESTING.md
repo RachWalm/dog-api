@@ -8,6 +8,8 @@ This meant that it wouldn't deploy - as this was during testing and the develope
 
 Therefore, userstories testing has not been completed. The list of tests is shown below without results as it has not been completed.
 
+These tests were performed during development and passed.
+
 ## Validation
 
 ### PEP8 linter
