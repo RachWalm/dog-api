@@ -625,7 +625,7 @@ From the userProfileSerializer the variable for whether the user is staff of sup
 
 ## Bugs
 
-All found bugs have been rectified.
+All found bugs have been rectified except number 8.
 
 1. There were a significant number of bugs with permissions. There were something that needed to not even be readonly for the members of the public, and various activities that were to only be performed either by the person who generated the data or by a specific level of user. Lack of understanding of what SAFE_METHODS were meant that the permissions I wrote didn't seem to do what I intended. Therefore some of the List and Create functions were separated out into different classes. This meant that I could give one permission to the List and one to the Create. After reading up on SAFE_METHODS and understanding how to make things readonly or allowing performing of manipulation of data this would be done differently. At the time - this solved the problem I was working round with permissions. If I were to do it again I would have written the permissions as they currently stand, applied them differently and not made separate urls for List and Create.
 
@@ -640,6 +640,12 @@ All found bugs have been rectified.
 6. In the post app originally the APIview was being used defining POST, GET, PUT etc. As the rest of the site was based on generics and I was more familiar with generics when the post app was facing bugs in save etc. It was recommended that the switch to generics was made. This solved the bug.
 
 7. Two CORS errors were encountered. The first was a lack of samesite in the settings.py which was corrected with aid of the tutors. The second was that initially it wouldn't work at all. After much checking of code I realised that I hadn't included it in the middleware while looking at something else by comparing the moments walkthrough settings code to my code.
+
+8. During testing it was realised that in the dog profile model the dog age had been set to blank but not to Null. This meant that the error in the react wasn't appearing when it was left blank. Therefore the model was updated, makemigrations --dry-run then makemigrations then migrate were performed. After this when the API was run it gave the error 
+
+```django.db.migrations.exceptions.InconsistentMigrationHistory: Migration posts.0003_alter_post_dog_id is applied before its dependency dog_profile.0003_alter_dogprofile_dog_age on database 'default'.```
+
+This failed to deploy on Heroku. However, the API on Heroku does appear to work. So after attempting to research how to fix this and discussing with tutor support (explaining that there were still other issues as well) I decided not to fix this. The fix would have taken me over my submission deadline from experience of the procedure before. I would need to get an empty database, clear out the migrations from the apps leaving just __init__.py then run the migrations. However, this would mean that everything in the database would be gone and I wouldn't have time to set it back up for assessment.
 
 ## Technologies
 
